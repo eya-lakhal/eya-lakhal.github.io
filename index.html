@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="author" content="Eya Lakhal">
+<title>Eya Lakhal Portfolio</title>
+<meta name="description" content="Eya Lakhal, élève ingénieure en informatique à l'ENIT : DevOps, cloud et intelligence artificielle. Projets, parcours et contact.">
+<meta property="og:title" content="Eya Lakhal · Portfolio">
+<meta property="og:description" content="DevOps, cloud et IA : projets, parcours et contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
+<style>
+/* Layout: dark editorial single page. Hero = name + 3D robot "Pip". Pink marks AI / personal, sky blue marks DevOps / technical. */
+:root {
+  --bg: #09090C;
+  --bg-2: #0E0E13;
+  --surface: #14141B;
+  --surface-2: #1B1B24;
+  --line: #272732;
+  --ink: #F3F2F7;
+  --muted: #A6A5B6;
+  --faint: #6F6E82;
+  --pink: #FF8DB6;
+  --pink-soft: rgba(255, 141, 182, 0.12);
+  --sky: #8ED2FF;
+  --sky-soft: rgba(142, 210, 255, 0.12);
+  --display: "Unbounded", "Segoe UI", system-ui, sans-serif;
+  --body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg); }
+html.en .fr { display: none !important; }
+html:not(.en) .en { display: none !important; }
+a { color: var(--sky); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Header ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(9, 9, 12, 0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top-in { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.logo i { font-style: normal; color: var(--pink); }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav a:hover, .nav a.on { color: var(--ink); }
+.lang { font-family: var(--mono); font-size: 12px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+.lang:hover { border-color: var(--sky); }
+.lang b { color: var(--pink); font-weight: 500; }
+.progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--pink); transform-origin: 0 50%; transform: scaleX(0); }
+.menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 8px; padding: 6px 10px; font-family: var(--mono); font-size: 12px; cursor: pointer; }
+@media (max-width: 820px) {
+  .menu-btn { display: inline-block; }
+  .nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 8px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); display: none; }
+  .nav.open { display: flex; }
+  .nav a { padding: 10px 0; font-size: 16px; width: 100%; }
+  .nav .lang { margin-top: 8px; }
+}
+
+/* ---------- Hero ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 24px; align-items: center; padding-block: 56px 40px; }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-block: 32px 24px; } }
+.hero-text { display: grid; gap: 20px; min-width: 0; animation: rise 0.7s ease-out both; }
+@keyframes rise { from { transform: translateY(14px); opacity: 0.2; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .hero-text { animation: none; } }
+.kicker { font-family: var(--mono); font-size: 13px; color: var(--sky); display: flex; align-items: center; gap: 10px; }
+.kicker::before { content: ""; width: 24px; height: 1px; background: var(--sky); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(46px, 8.4vw, 96px); line-height: 0.96; letter-spacing: -0.035em; margin: 0; }
+h1 .dot { color: var(--pink); }
+.motto { font-size: clamp(19px, 2.3vw, 23px); line-height: 1.45; margin: 0; max-width: 34ch; color: var(--ink); text-wrap: balance; }
+.motto em { font-style: normal; color: var(--pink); }
+.intro { margin: 0; max-width: 58ch; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 15px; font-weight: 600; padding: 11px 18px; border-radius: 10px; text-decoration: none; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+.btn:hover { transform: translateY(-2px); border-color: var(--sky); }
+.btn.pink { background: var(--pink); border-color: var(--pink); color: #1A0C12; }
+.btn.pink:hover { background: #FFA5C6; border-color: #FFA5C6; }
+.btn svg { width: 16px; height: 16px; }
+.avail { display: inline-flex; align-items: center; gap: 10px; width: fit-content; font-size: 14px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px 6px 10px; }
+.avail .pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 0 var(--pink-soft); animation: pulse 2.2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,141,182,0.45); } 70% { box-shadow: 0 0 0 10px rgba(255,141,182,0); } 100% { box-shadow: 0 0 0 0 rgba(255,141,182,0); } }
+@media (prefers-reduced-motion: reduce) { .avail .pulse { animation: none; } }
+
+.stage { position: relative; height: clamp(340px, 44vw, 500px); min-width: 0; }
+.stage canvas { width: 100%; height: 100%; display: block; cursor: pointer; touch-action: pan-y; }
+.stage .floor { position: absolute; left: 50%; bottom: 6%; width: 70%; height: 1px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, var(--line), transparent); }
+.bubble { position: absolute; top: 4%; left: 4%; max-width: min(300px, 80%); background: var(--surface-2); border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 12px 14px; font-size: 14px; line-height: 1.5; color: var(--ink); box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: opacity 0.25s ease, transform 0.25s ease; }
+.bubble .who { display: block; font-family: var(--mono); font-size: 11px; color: var(--sky); margin-bottom: 2px; }
+.bubble.swap { opacity: 0; transform: translateY(4px); }
+.stage-hint { position: absolute; right: 4%; bottom: 0; font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.no3d .stage canvas { display: none; }
+.no3d .stage .fallback { display: grid; }
+.stage .fallback { display: none; place-items: center; height: 100%; }
+
+/* ---------- Sections ---------- */
+section { padding-block: 72px 16px; scroll-margin-top: 72px; }
+.label { font-family: var(--mono); font-size: 13px; color: var(--sky); margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
+.label::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.4vw, 44px); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 28px; max-width: 22ch; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 500; font-size: 18px; line-height: 1.3; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% cover 22%; }
+    @keyframes reveal { from { opacity: 0.25; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  }
+}
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; }
+@media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 28px; } }
+.about-text { display: grid; gap: 16px; max-width: 64ch; }
+.about-text p { margin: 0; color: var(--muted); }
+.about-text p strong { color: var(--ink); font-weight: 600; }
+.facts { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 14px; align-content: start; }
+.fact { display: grid; gap: 2px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.fact:last-child { border-bottom: 0; padding-bottom: 0; }
+.fact .k { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+.fact .v { font-size: 15px; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 960px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .skills { grid-template-columns: 1fr; } }
+.scard { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; min-width: 0; transition: border-color 0.25s ease, transform 0.25s ease; }
+.scard:hover { border-color: #3A3A48; transform: translateY(-3px); }
+.scard .ico { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 14px; }
+.scard .ico svg { width: 20px; height: 20px; }
+.ico.sky { background: var(--sky-soft); color: var(--sky); }
+.ico.pink { background: var(--pink-soft); color: var(--pink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip { font-family: var(--mono); font-size: 12px; line-height: 1.4; padding: 4px 9px; border-radius: 7px; background: var(--bg-2); border: 1px solid var(--line); color: var(--muted); transition: color 0.2s ease, border-color 0.2s ease; }
+.scard:hover .chip { color: var(--ink); }
+
+/* Projects */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.fbtn { font-family: var(--body); font-weight: 600; font-size: 14px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+.fbtn[aria-pressed="true"] { color: #10161C; background: var(--sky); border-color: var(--sky); }
+.fbtn:hover { color: var(--ink); }
+.fbtn[aria-pressed="true"]:hover { color: #10161C; }
+.pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 980px) { .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .pgrid { grid-template-columns: 1fr; } }
+.pcard { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; transition: transform 0.25s ease, border-color 0.25s ease; --mx: 50%; --my: 0%; }
+.pcard::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(260px circle at var(--mx) var(--my), rgba(255, 141, 182, 0.08), transparent 60%); opacity: 0; transition: opacity 0.3s ease; }
+.pcard:hover { transform: translateY(-4px); border-color: #3A3A48; }
+.pcard:hover::after { opacity: 1; }
+.pcard[hidden] { display: none !important; }
+.pillus { aspect-ratio: 2 / 1; max-width: 100%; background-color: var(--bg-2); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; border-bottom: 1px solid var(--line); display: grid; place-items: center; }
+.pillus svg { width: 100%; height: 100%; }
+.pbody { padding: 18px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pmeta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: var(--faint); font-family: var(--mono); }
+.dom { font-family: var(--mono); font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+.dom.devops { color: var(--sky); background: var(--sky-soft); }
+.dom.ai { color: var(--pink); background: var(--pink-soft); }
+.dom.web { color: var(--ink); background: var(--surface-2); }
+.pbody p { margin: 0; color: var(--muted); font-size: 15px; }
+.pmetric { font-family: var(--display); font-weight: 600; font-size: 26px; color: var(--pink); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.pmetric small { font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--faint); letter-spacing: 0; margin-left: 6px; }
+.status { font-family: var(--mono); font-size: 11px; color: var(--pink); border: 1px dashed var(--pink); border-radius: 6px; padding: 1px 7px; }
+.pactions { margin-top: auto; padding-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; position: relative; z-index: 1; }
+.abtn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--body); font-size: 14px; font-weight: 600; padding: 8px 13px; border-radius: 9px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); text-decoration: none; cursor: pointer; }
+.abtn:hover { border-color: var(--pink); }
+.abtn svg { width: 15px; height: 15px; }
+
+/* SVG illustration classes */
+.s-sky { stroke: var(--sky); fill: none; }
+.s-pink { stroke: var(--pink); fill: none; }
+.s-faint { stroke: var(--faint); fill: none; }
+.s-line { stroke: var(--line); fill: none; }
+.f-surf { fill: var(--surface-2); }
+.f-pink { fill: var(--pink); }
+.f-sky { fill: var(--sky); }
+.f-pinksoft { fill: var(--pink-soft); }
+.f-skysoft { fill: var(--sky-soft); }
+.t-mono { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+
+/* Dialog */
+dialog.pd { width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); color: var(--ink); overflow: hidden; }
+dialog.pd::backdrop { background: rgba(4, 4, 6, 0.72); backdrop-filter: blur(4px); }
+dialog.pd[open] { animation: pop 0.25s ease-out; }
+@keyframes pop { from { transform: translateY(12px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { dialog.pd[open] { animation: none; } }
+.pd-in { max-height: calc(100vh - 50px); overflow-y: auto; }
+.pd-illus { aspect-ratio: 3 / 1; max-width: 100%; background-color: var(--bg-2); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; border-bottom: 1px solid var(--line); }
+.pd-illus svg { width: 100%; height: 100%; }
+.pd-body { padding: 24px; display: grid; gap: 20px; }
+.pd-head { display: grid; gap: 8px; }
+.pd-head h3 { font-size: clamp(20px, 3vw, 26px); }
+.pd-sec h4 { font-family: var(--mono); font-weight: 500; font-size: 12px; color: var(--sky); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+.pd-sec p { margin: 0; color: var(--muted); }
+.pd-sec ul { margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 5px; }
+.pd-close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: rgba(9,9,12,0.8); color: var(--ink); cursor: pointer; font-size: 20px; line-height: 1; }
+.pd-close:hover { border-color: var(--pink); }
+.pd-note { font-size: 13px; color: var(--faint); }
+
+/* Timeline */
+.tl-wrap { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; }
+@media (max-width: 860px) { .tl-wrap { grid-template-columns: 1fr; } }
+.tl { list-style: none; margin: 0; padding: 0 0 0 28px; position: relative; }
+.tl::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+.tl-item { position: relative; padding-bottom: 14px; }
+.tl-item::before { content: ""; position: absolute; left: -28px; top: 14px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--sky); }
+.tl-item.work::before { border-color: var(--pink); background: var(--pink); }
+.tl-item.next::before { border-style: dashed; border-color: var(--pink); }
+.tl-head { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; color: var(--ink); cursor: pointer; display: grid; gap: 4px; font-family: var(--body); }
+.tl-head:hover { border-color: #3A3A48; }
+.tl-head[aria-expanded="true"] { border-color: var(--sky); border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+.tl-date { font-family: var(--mono); font-size: 12px; color: var(--sky); }
+.tl-item.work .tl-date, .tl-item.next .tl-date { color: var(--pink); }
+.tl-title { font-weight: 700; font-size: 16px; }
+.tl-place { font-size: 14px; color: var(--muted); }
+.tl-body { border: 1px solid var(--line); border-top: 0; border-radius: 0 0 14px 14px; padding: 12px 16px 14px; background: var(--bg-2); color: var(--muted); font-size: 15px; }
+.tl-body ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.side h3 { font-size: 16px; margin-bottom: 14px; }
+.orgs { display: grid; gap: 10px; }
+.org { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.org b { display: block; font-size: 15px; }
+.org span { font-size: 14px; color: var(--muted); }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(20px, 4vw, 40px); }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+.clinks { display: grid; gap: 10px; margin-top: 18px; }
+.clink { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; color: var(--ink); text-decoration: none; min-width: 0; }
+.clink:hover { border-color: var(--sky); }
+.clink .t { display: grid; min-width: 0; }
+.clink .t small { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.clink .t span { overflow-wrap: anywhere; font-size: 15px; }
+.copy { font-family: var(--mono); font-size: 12px; background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; cursor: pointer; flex-shrink: 0; }
+.copy:hover { border-color: var(--pink); }
+form.cf { display: grid; gap: 12px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; font-weight: 600; color: var(--muted); }
+.field input, .field textarea { font: inherit; font-size: 15px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; width: 100%; }
+.field textarea { min-height: 130px; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--sky); }
+.send-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.send { position: relative; overflow: hidden; }
+.plane { position: absolute; left: 14px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); opacity: 0; }
+.send.flying .plane { animation: fly 0.9s ease-in forwards; }
+@keyframes fly { 0% { opacity: 1; transform: translate(0, -50%) rotate(0); } 100% { opacity: 0; transform: translate(220px, -160%) rotate(-12deg); } }
+@media (prefers-reduced-motion: reduce) { .send.flying .plane { animation: none; } }
+.form-msg { font-size: 14px; color: var(--muted); }
+.form-msg.ok { color: var(--sky); }
+.form-msg.err { color: var(--pink); }
+.compose { display: grid; gap: 8px; }
+.compose textarea { font-family: var(--mono); font-size: 13px; min-height: 120px; color: var(--ink); background: var(--bg-2); border: 1px dashed var(--line); border-radius: 10px; padding: 10px; width: 100%; }
+
+footer { padding-block: 56px 120px; color: var(--faint); font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; border-top: 1px solid var(--line); margin-top: 72px; }
+
+/* ---------- Chatbot ---------- */
+.chat-fab { position: fixed; z-index: 70; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: 58px; height: 58px; border-radius: 50%; border: 1px solid #3A3A48; background: var(--surface-2); color: var(--ink); cursor: pointer; display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.45); transition: transform 0.2s ease; }
+.chat-fab:hover { transform: scale(1.06); border-color: var(--pink); }
+.chat-fab svg { width: 26px; height: 26px; }
+.chat-fab .badge { position: absolute; top: 2px; right: 2px; width: 12px; height: 12px; border-radius: 50%; background: var(--pink); border: 2px solid var(--bg); }
+.chat { position: fixed; z-index: 71; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(90px + env(safe-area-inset-bottom, 0px)); width: min(390px, calc(100vw - 32px)); height: min(580px, calc(100vh - 130px)); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
+.chat[hidden] { display: none !important; }
+.chat.open-anim { animation: pop 0.22s ease-out; }
+@media (max-width: 480px) { .chat { right: max(16px, env(safe-area-inset-right, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); width: auto; } }
+.chat-head { display: flex; align-items: center; gap: 10px; padding: 14px 14px 12px 16px; border-bottom: 1px solid var(--line); }
+.chat-head .av { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line); display: grid; place-items: center; flex-shrink: 0; }
+.chat-head .av svg { width: 22px; height: 22px; }
+.chat-head .ttl { display: grid; line-height: 1.25; min-width: 0; }
+.chat-head .ttl b { font-size: 15px; }
+.chat-head .ttl small { font-size: 12px; color: var(--faint); }
+.chat-x { margin-left: auto; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 8px; width: 32px; height: 32px; cursor: pointer; font-size: 18px; }
+.chat-x:hover { border-color: var(--pink); }
+.chat-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.m { max-width: 88%; padding: 10px 13px; border-radius: 14px; font-size: 14.5px; line-height: 1.5; overflow-wrap: anywhere; }
+.m.bot { background: var(--surface-2); border: 1px solid var(--line); border-bottom-left-radius: 4px; align-self: flex-start; }
+.m.me { background: var(--pink); color: #1A0C12; border-bottom-right-radius: 4px; align-self: flex-end; font-weight: 500; }
+.m p { margin: 0; }
+.m p + p, .m p + ul, .m ul + p { margin-top: 6px; }
+.m ul { margin: 0; padding-left: 18px; }
+.m a { color: var(--sky); }
+.typing { display: inline-flex; gap: 4px; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1s infinite; }
+.typing i:nth-child(2) { animation-delay: 0.15s; } .typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+.sugg { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 16px 10px; }
+.sugg button { font-family: var(--body); font-size: 13px; font-weight: 600; color: var(--sky); background: var(--sky-soft); border: 1px solid transparent; border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+.sugg button:hover { border-color: var(--sky); }
+.chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); }
+.chat-form input { flex: 1; min-width: 0; font: inherit; font-size: 14.5px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.chat-form input:focus { outline: none; border-color: var(--sky); }
+.chat-form button { background: var(--pink); color: #1A0C12; border: 0; border-radius: 10px; padding: 0 14px; font-weight: 700; cursor: pointer; font-family: var(--body); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="#accueil">EL<i>.</i></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">menu</button>
+    <nav class="nav" id="nav" aria-label="Navigation">
+      <a href="#about"><span class="fr">À propos</span><span class="en">About</span></a>
+      <a href="#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a>
+      <a href="#projects"><span class="fr">Projets</span><span class="en">Projects</span></a>
+      <a href="#journey"><span class="fr">Parcours</span><span class="en">Journey</span></a>
+      <a href="#contact">Contact</a>
+      <button class="lang" id="langBtn" type="button" aria-label="Changer de langue / Switch language"></button>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main class="wrap" id="accueil">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="kicker"><span class="fr">Étudiante en ingénierie informatique · ENIT</span><span class="en">Software Engineering Student · ENIT</span></div>
+      <h1>Eya<br>Lakhal<span class="dot">.</span></h1>
+      <p class="motto"><span class="fr">J'aime qu'une idée aille jusqu'au bout : <em>entraînée, testée, déployée</em> et surveillée.</span><span class="en">I like ideas that go all the way: <em>trained, tested, deployed</em> and monitored.</span></p>
+      <p class="intro"><span class="fr">Élève ingénieure en dernière année à l'ENIT, je travaille entre le DevOps et l'intelligence artificielle : des pipelines CI/CD et des conteneurs d'un côté, des modèles de deep learning et des assistants à base de LLM de l'autre.</span><span class="en">Final-year engineering student at ENIT, I work between DevOps and artificial intelligence: CI/CD pipelines and containers on one side, deep learning models and LLM-based assistants on the other.</span></p>
+      <div class="cta">
+        <a class="btn pink" href="#projects"><span class="fr">Voir mes projets</span><span class="en">See my projects</span></a>
+        <a class="btn" id="cvLink" href="cv-eya-lakhal-fr.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg><span class="fr">Mon CV</span><span class="en">My resume</span></a>
+        <a class="btn" href="#contact"><span class="fr">Me contacter</span><span class="en">Contact me</span></a>
+      </div>
+      <div class="avail"><span class="pulse"></span><span class="fr">Disponible pour un stage PFE de 6 mois dès février 2027</span><span class="en">Available for a 6-month end-of-studies internship from February 2027</span></div>
+    </div>
+
+    <div class="stage" id="stage">
+      <canvas id="bot" aria-label="Pip, le robot d'accueil" role="img"></canvas>
+      <div class="floor"></div>
+      <div class="bubble" id="bubble" aria-live="polite"><span class="who">Pip</span><span id="bubbleText"></span></div>
+      <div class="fallback" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="200" height="200"><circle cx="100" cy="80" r="46" class="f-surf s-sky" stroke-width="2"/><rect x="72" y="66" width="56" height="26" rx="13" fill="#07070A"/><circle cx="88" cy="79" r="5" class="f-sky"/><circle cx="112" cy="79" r="5" class="f-sky"/><line x1="100" y1="34" x2="100" y2="18" class="s-faint" stroke-width="3"/><circle cx="100" cy="14" r="6" class="f-pink"/><ellipse cx="100" cy="158" rx="40" ry="34" class="f-surf s-pink" stroke-width="2"/></svg>
+      </div>
+      <div class="stage-hint"><span class="fr">cliquez sur Pip</span><span class="en">click Pip</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <p class="label"><span class="fr">à propos</span><span class="en">about me</span></p>
+    <h2><span class="fr">Entre le code qui tourne et le modèle qui apprend.</span><span class="en">Between code that runs and models that learn.</span></h2>
+    <div class="about">
+      <div class="about-text">
+        <p class="fr">Je suis en dernière année du <strong>cycle ingénieur en informatique à l'École Nationale d'Ingénieurs de Tunis (ENIT)</strong>, et je suis en parallèle un <strong>Master de recherche en Technologie des Systèmes d'Information</strong>. Avant l'ENIT, j'ai fait deux années de classes préparatoires.</p>
+        <p class="en">I am in the final year of the <strong>computer engineering program at the National Engineering School of Tunis (ENIT)</strong>, and I am also enrolled in a <strong>research Master's in Information Systems Technology</strong>. Before ENIT, I spent two years in preparatory classes.</p>
+        <p class="fr">Ce qui m'attire d'abord, c'est le <strong>DevOps et le cloud</strong> : automatiser, conteneuriser, superviser. Ensuite l'<strong>intelligence artificielle</strong>, en particulier l'IA générative (RAG, agents) et la façon de la mettre en production proprement (MLOps).</p>
+        <p class="en">What draws me first is <strong>DevOps and the cloud</strong>: automating, containerizing, monitoring. Then <strong>artificial intelligence</strong>, especially generative AI (RAG, agents) and how to put it into production properly (MLOps).</p>
+        <p class="fr">Ma façon de travailler : aller jusqu'au résultat qui fonctionne. Chez BNA Bank, j'ai repris une chaîne CI/CD obsolète et réglé un à un les conflits de ports, les limites de mémoire et les versions de Java, jusqu'à une démonstration complète le jour de ma soutenance. Sur notre projet EEG, quand nous avons compris qu'une fuite de données gonflait nos scores, nous avons refait l'évaluation sur des patients jamais vus.</p>
+        <p class="en">How I work: I keep going until it actually runs. At BNA Bank, I took over an outdated CI/CD chain and fixed port conflicts, memory limits and Java versions one by one, until a full end-to-end demo on the day of my defense. On our EEG project, when we realized that data leakage was inflating our scores, we redid the evaluation on patients the model had never seen.</p>
+        <p class="fr">Mon objectif : un <strong>stage de fin d'études de 6 mois à partir de février 2027</strong>, en France ou en Europe, pour progresser sur le cloud (AWS, GCP), Kubernetes et le MLOps.</p>
+        <p class="en">My goal: a <strong>6-month end-of-studies internship from February 2027</strong>, in France or Europe, to grow in cloud (AWS, GCP), Kubernetes and MLOps.</p>
+      </div>
+      <aside class="facts" aria-label="Infos">
+        <div class="fact"><span class="k"><span class="fr">basée à</span><span class="en">based in</span></span><span class="v">Tunis, Tunisie</span></div>
+        <div class="fact"><span class="k"><span class="fr">disponible</span><span class="en">available</span></span><span class="v"><span class="fr">Février 2027 · 6 mois</span><span class="en">February 2027 · 6 months</span></span></div>
+        <div class="fact"><span class="k"><span class="fr">langues</span><span class="en">languages</span></span><span class="v"><span class="fr">Arabe (maternelle), français et anglais (courant)</span><span class="en">Arabic (native), French and English (fluent)</span></span></div>
+        <div class="fact"><span class="k"><span class="fr">domaines</span><span class="en">focus</span></span><span class="v">DevOps · Cloud · IA / AI · MLOps</span></div>
+        <div class="fact"><span class="k"><span class="fr">en dehors de l'écran</span><span class="en">off screen</span></span><span class="v"><span class="fr">Natation, gymnastique, chant</span><span class="en">Swimming, gymnastics, singing</span></span></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <p class="label"><span class="fr">compétences</span><span class="en">skills</span></p>
+    <h2><span class="fr">Les outils que j'ai réellement utilisés.</span><span class="en">The tools I have actually used.</span></h2>
+    <div class="skills" id="skillsGrid"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="label"><span class="fr">projets</span><span class="en">projects</span></p>
+    <h2><span class="fr">Ce que j'ai construit, testé et mesuré.</span><span class="en">What I have built, tested and measured.</span></h2>
+    <div class="filters" role="group" aria-label="Filtrer les projets" id="filters"></div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey" class="reveal">
+    <p class="label"><span class="fr">parcours</span><span class="en">journey</span></p>
+    <h2><span class="fr">Formation et expérience.</span><span class="en">Education and experience.</span></h2>
+    <div class="tl-wrap">
+      <ol class="tl" id="timeline"></ol>
+      <div class="side">
+        <h3><span class="fr">Engagement associatif</span><span class="en">Student involvement</span></h3>
+        <div class="orgs" id="orgs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="contact">
+      <div>
+        <p class="label">contact</p>
+        <h2 style="margin-bottom:12px"><span class="fr">Un stage, un projet, une question ?</span><span class="en">An internship, a project, a question?</span></h2>
+        <p style="margin:0;color:var(--muted);max-width:44ch"><span class="fr">Je réponds à tous les messages. Le plus rapide reste l'e-mail ou LinkedIn.</span><span class="en">I answer every message. Email or LinkedIn is the fastest way.</span></p>
+        <div class="clinks">
+          <div class="clink"><div class="t"><small>e-mail</small><span id="mailText">eya.lakhal@etudiant-enit.utm.tn</span></div><button class="copy" type="button" data-copy="eya.lakhal@etudiant-enit.utm.tn"><span class="fr">copier</span><span class="en">copy</span></button></div>
+          <a class="clink" href="https://www.linkedin.com/in/eya-lakhal-058277373" target="_blank" rel="noopener"><div class="t"><small>linkedin</small><span>linkedin.com/in/eya-lakhal-058277373</span></div><span aria-hidden="true">↗</span></a>
+          <a class="clink" href="https://github.com/eya-lakhal" target="_blank" rel="noopener"><div class="t"><small>github</small><span>github.com/eya-lakhal</span></div><span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <form class="cf" id="contactForm" novalidate>
+        <div class="field"><label for="cf-name"><span class="fr">Nom</span><span class="en">Name</span></label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="cf-email">E-mail</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" required></textarea></div>
+        <div class="send-row">
+          <button class="btn pink send" id="sendBtn" type="submit"><svg class="plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg><span class="fr">Envoyer</span><span class="en">Send</span></button>
+          <span class="form-msg" id="formMsg" role="status"></span>
+        </div>
+        <div class="compose" id="compose" hidden>
+          <label class="form-msg" for="cf-out"><span class="fr">Votre message, prêt à être collé dans un e-mail :</span><span class="en">Your message, ready to paste into an email:</span></label>
+          <textarea id="cf-out" readonly></textarea>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Eya Lakhal</span>
+    <span><span class="fr">Conçu en HTML, CSS, JavaScript et Three.js</span><span class="en">Built with HTML, CSS, JavaScript and Three.js</span></span>
+  </footer>
+</main>
+
+<!-- Project details dialog -->
+<dialog class="pd" id="pd" aria-labelledby="pdTitle">
+  <div class="pd-in" id="pdIn"></div>
+  <button class="pd-close" id="pdClose" type="button" aria-label="Fermer / Close">×</button>
+</dialog>
+
+<!-- Chatbot -->
+<button class="chat-fab" id="chatFab" type="button" aria-expanded="false" aria-controls="chat" aria-label="Ouvrir l'assistant / Open assistant">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="9" width="20" height="15" rx="7.5" fill="none" stroke="#8ED2FF" stroke-width="2"/><circle cx="12.5" cy="16.5" r="2" fill="#8ED2FF"/><circle cx="19.5" cy="16.5" r="2" fill="#8ED2FF"/><line x1="16" y1="9" x2="16" y2="5" stroke="#6F6E82" stroke-width="2"/><circle cx="16" cy="4" r="2" fill="#FF8DB6"/></svg>
+  <span class="badge" id="chatBadge"></span>
+</button>
+<div class="chat" id="chat" role="dialog" aria-label="Pip, assistant" hidden>
+  <div class="chat-head">
+    <div class="av"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="9" width="20" height="15" rx="7.5" fill="none" stroke="#8ED2FF" stroke-width="2"/><circle cx="12.5" cy="16.5" r="2" fill="#8ED2FF"/><circle cx="19.5" cy="16.5" r="2" fill="#8ED2FF"/><circle cx="16" cy="4" r="2" fill="#FF8DB6"/></svg></div>
+    <div class="ttl"><b>Pip</b><small><span class="fr">répond à partir du portfolio d'Eya</span><span class="en">answers from Eya's portfolio</span></small></div>
+    <button class="chat-x" id="chatX" type="button" aria-label="Fermer / Close">×</button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="sugg" id="sugg"></div>
+  <form class="chat-form" id="chatForm">
+    <label class="sr" for="chatIn">Question</label>
+    <input id="chatIn" type="text" autocomplete="off" maxlength="300">
+    <button type="submit"><span class="fr">Envoyer</span><span class="en">Send</span></button>
+  </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* =========================================================
+   CONFIGURATION
+   - CONTACT_ENDPOINT : URL d'un service de formulaire (ex. Formspree) une fois
+     le site hébergé (GitHub Pages). Vide = le message est préparé et copié.
+   - CHAT_API_ENDPOINT : URL d'un petit serveur à vous (ex. fonction serverless)
+     qui garde la clé d'API côté serveur et renvoie { "answer": "..." }.
+     Vide = Pip répond uniquement à partir des données ci-dessous.
+   ========================================================= */
+var CONFIG = { CONTACT_ENDPOINT: "", CHAT_API_ENDPOINT: "" };
+
+/* =========================================================
+   DONNÉES RÉELLES (source unique pour la page ET le chatbot)
+   ========================================================= */
+var PROFILE = {
+  name: "Eya Lakhal",
+  email: "eya.lakhal@etudiant-enit.utm.tn",
+  linkedin: "https://www.linkedin.com/in/eya-lakhal-058277373",
+  github: "https://github.com/eya-lakhal"
+};
+
+var PROJECTS = [
+  {
+    id: "declaris", cat: "devops", illus: "pipeline",
+    name: { fr: "Chaîne CI/CD Declaris", en: "Declaris CI/CD pipeline" },
+    period: { fr: "Juin – Août 2026", en: "June – August 2026" },
+    context: { fr: "Stage DevOps · BNA Bank", en: "DevOps internship · BNA Bank" },
+    short: { fr: "Modernisation de la chaîne CI/CD d'une plateforme bancaire de déclaration fiscale, du build au déploiement supervisé.", en: "Modernizing the CI/CD chain of a banking tax declaration platform, from build to monitored deployment." },
+    problem: { fr: "La chaîne d'intégration et de déploiement de la banque était devenue obsolète, et Declaris, une plateforme de déclaration fiscale en cours de développement (Spring Boot, Angular), avait besoin d'un déploiement fiable et automatisé.", en: "The bank's integration and deployment chain had become outdated, and Declaris, a tax declaration platform under development (Spring Boot, Angular), needed reliable, automated deployments." },
+    objectives: { fr: ["Automatiser le build, l'analyse de qualité et le déploiement", "Sécuriser les conteneurs et les mises en production", "Centraliser les logs pour superviser la plateforme"], en: ["Automate builds, quality analysis and deployment", "Secure containers and releases", "Centralize logs to monitor the platform"] },
+    features: { fr: ["Environnement multi-VM sous RHEL 9 (VMware) : Jenkins, SonarQube, Nexus et ELK", "Pipeline Jenkins : build Maven et Angular, analyse SonarQube, déploiement des conteneurs", "Passage de Docker à Podman rootless, puis podman-compose (backend sur le port 8081, frontend sur le port 4500, réseau dédié)", "Scan de vulnérabilités Trivy et validation par e-mail avant chaque déploiement", "Logs centralisés avec Filebeat et Elasticsearch", "Services systemd et documentation complète"], en: ["Multi-VM RHEL 9 environment (VMware): Jenkins, SonarQube, Nexus and ELK", "Jenkins pipeline: Maven and Angular builds, SonarQube analysis, container deployment", "Moved from Docker to rootless Podman, then podman-compose (backend on port 8081, frontend on port 4500, dedicated network)", "Trivy vulnerability scan and email approval before each deployment", "Centralized logs with Filebeat and Elasticsearch", "systemd services and full documentation"] },
+    role: { fr: "J'ai conçu et mis en place la chaîne pendant mon stage, puis je l'ai présentée en démonstration de bout en bout lors de ma soutenance.", en: "I designed and set up the chain during my internship, then presented it as an end-to-end demo at my defense." },
+    difficulties: { fr: ["Conflits de ports et limites de mémoire sur les machines virtuelles", "Plusieurs versions de Java à faire cohabiter (21, 17 et 8)", "Problèmes propres au mode rootless de Podman", "Extension de disque avec LVM"], en: ["Port conflicts and memory limits on the virtual machines", "Several Java versions to run side by side (21, 17 and 8)", "Issues specific to rootless Podman", "Disk extension with LVM"] },
+    tech: ["Jenkins", "GitLab", "Maven", "SonarQube", "Trivy", "Nexus", "Podman", "Docker", "ELK", "Filebeat", "RHEL 9", "VMware", "Bash", "systemd"],
+    github: "https://github.com/eya-lakhal/declaris-cicd-devops",
+    aliases: ["declaris", "cicd", "pipeline ci/cd", "chaine ci/cd"]
+  },
+  {
+    id: "ecg", cat: "ai", illus: "ecg",
+    name: { fr: "Détection d'arythmies cardiaques (ECG)", en: "Cardiac arrhythmia detection (ECG)" },
+    period: { fr: "Oct. 2025 – Avr. 2026", en: "Oct 2025 – Apr 2026" },
+    context: { fr: "Projet de fin d'année II · ENIT · en binôme", en: "2nd-year project · ENIT · in pairs" },
+    short: { fr: "Un modèle hybride CNN-BiLSTM qui classe les battements cardiaques de la base MIT-BIH.", en: "A hybrid CNN-BiLSTM model that classifies heartbeats from the MIT-BIH database." },
+    metric: { value: "98,5 %", valueEn: "98.5%", label: "accuracy" },
+    problem: { fr: "Repérer automatiquement les battements anormaux dans un enregistrement ECG, alors que les arythmies sont rares par rapport aux battements normaux.", en: "Automatically spot abnormal beats in an ECG recording, while arrhythmias are rare compared with normal beats." },
+    objectives: { fr: ["Classer les battements cardiaques de la base MIT-BIH", "Évaluer le modèle au-delà de la seule accuracy"], en: ["Classify heartbeats from the MIT-BIH database", "Evaluate the model beyond accuracy alone"] },
+    features: { fr: ["Prétraitement et segmentation des signaux en battements", "Architecture CNN-BiLSTM : le CNN extrait la forme locale du battement, le BiLSTM son contexte temporel", "Prise en compte du déséquilibre entre classes", "Évaluation par AUC, démarche CRISP-DM", "98,5 % d'accuracy"], en: ["Signal preprocessing and beat segmentation", "CNN-BiLSTM architecture: the CNN extracts local beat shape, the BiLSTM its temporal context", "Class imbalance handling", "AUC evaluation, CRISP-DM process", "98.5% accuracy"] },
+    role: { fr: "Projet réalisé en binôme : conception du modèle, entraînement et évaluation.", en: "Pair project: model design, training and evaluation." },
+    difficulties: { fr: ["Le déséquilibre entre classes d'arythmies, qui rend l'accuracy seule trompeuse"], en: ["Imbalance between arrhythmia classes, which makes accuracy alone misleading"] },
+    tech: ["Python", "TensorFlow/Keras", "scikit-learn", "NumPy", "Pandas"],
+    github: "https://github.com/eya-lakhal/ECGapp",
+    aliases: ["ecg", "arythmie", "arrhythmia", "cardiaque", "cardiac", "coeur", "heart", "mit-bih", "bilstm"]
+  },
+  {
+    id: "eeg", cat: "ai", illus: "eeg",
+    name: { fr: "Détection de crises d'absence (EEG)", en: "Absence seizure detection (EEG)" },
+    period: { fr: "Sept. – Oct. 2026", en: "Sep – Oct 2026" },
+    context: { fr: "Projet de data mining · ENIT · en binôme", en: "Data mining project · ENIT · in pairs" },
+    short: { fr: "Détection d'événements rares dans des signaux EEG, avec une évaluation sur des patients jamais vus.", en: "Detecting rare events in EEG signals, evaluated on patients never seen during training." },
+    metric: { value: "0,76", valueEn: "0.76", label: "F1-score" },
+    problem: { fr: "Détecter les crises d'absence dans des enregistrements EEG, où les crises ne représentent qu'environ 4 % des données.", en: "Detect absence seizures in EEG recordings, where seizures make up only about 4% of the data." },
+    objectives: { fr: ["Construire un jeu de données fiable à partir des annotations", "Comparer plusieurs modèles sur des patients inconnus"], en: ["Build a reliable dataset from the annotations", "Compare several models on unseen patients"] },
+    features: { fr: ["Dataset étiqueté à partir des EEG annotés de 19 patients (82 crises)", "Filtrage à phase nulle et fenêtres de 2 secondes", "228 caractéristiques temporelles et fréquentielles", "Grid search de 94 combinaisons", "Six modèles comparés (Decision Tree, Random Forest, KNN, SVM, LSTM, GRU) : F1-score de 0,76"], en: ["Labeled dataset from annotated EEG of 19 patients (82 seizures)", "Zero-phase filtering and 2-second windows", "228 time and frequency features", "Grid search over 94 combinations", "Six models compared (Decision Tree, Random Forest, KNN, SVM, LSTM, GRU): F1-score of 0.76"] },
+    role: { fr: "Projet réalisé en binôme : préparation des données, extraction des caractéristiques, modélisation et évaluation.", en: "Pair project: data preparation, feature extraction, modeling and evaluation." },
+    difficulties: { fr: ["4 incohérences d'annotation détectées lors du contrôle qualité", "Les fenêtres chevauchées à 50 % créaient une fuite de données et gonflaient la validation croisée : l'évaluation a été refaite sur des patients jamais vus", "Des crises très rares (environ 4 % des données)"], en: ["4 annotation inconsistencies found during quality control", "50% overlapping windows caused data leakage and inflated cross-validation: the evaluation was redone on unseen patients", "Very rare seizures (about 4% of the data)"] },
+    tech: ["Python", "scikit-learn", "XGBoost", "GridSearchCV", "NumPy", "Pandas", "LSTM/GRU"],
+    github: "https://github.com/eya-lakhal/EEG",
+    aliases: ["eeg", "crise", "crises", "seizure", "epilepsie", "epilepsy", "absence"]
+  },
+  {
+    id: "rag", cat: "ai", illus: "rag", inProgress: true,
+    name: { fr: "Assistant RAG sur documentation technique", en: "RAG assistant for technical documentation" },
+    period: { fr: "Depuis nov. 2026", en: "Since Nov 2026" },
+    context: { fr: "Projet personnel", en: "Personal project" },
+    short: { fr: "Un assistant qui répond aux questions sur une documentation technique en citant ses sources.", en: "An assistant that answers questions about technical documentation and cites its sources." },
+    problem: { fr: "Trouver vite une réponse fiable dans une documentation technique volumineuse, sans que le LLM invente.", en: "Quickly find a reliable answer in large technical documentation, without the LLM making things up." },
+    objectives: { fr: ["Répondre en s'appuyant sur les documents", "Citer les sources de chaque réponse", "Mesurer et limiter les hallucinations"], en: ["Answer from the documents", "Cite the sources of every answer", "Measure and limit hallucinations"] },
+    features: { fr: ["Découpage des documents en chunks et embeddings", "Indexation dans une base vectorielle FAISS", "Chaîne RAG avec LangChain : récupération des passages pertinents puis génération par un LLM", "Évaluation avec Ragas (fidélité, pertinence)", "API FastAPI et conteneurisation Docker"], en: ["Document chunking and embeddings", "Indexing in a FAISS vector store", "RAG chain with LangChain: retrieval of relevant passages, then LLM generation", "Evaluation with Ragas (faithfulness, relevancy)", "FastAPI API and Docker containerization"] },
+    role: { fr: "Projet personnel : conception et développement.", en: "Personal project: design and development." },
+    tech: ["Python", "LangChain", "FAISS", "Ragas", "FastAPI", "Docker"],
+    github: null,
+    aliases: ["rag", "llm", "langchain", "assistant", "documentation", "faiss", "ragas"]
+  },
+  {
+    id: "finetune", cat: "ai", illus: "cnn",
+    name: { fr: "Fine-tuning d'un ResNet50V2", en: "Fine-tuning a ResNet50V2" },
+    period: null,
+    context: { fr: "Projet de cours · ENIT", en: "Course project · ENIT" },
+    short: { fr: "Trois stratégies d'entraînement comparées pour une classification d'images en 5 classes.", en: "Three training strategies compared for a 5-class image classification task." },
+    metric: { value: "92,9 %", valueEn: "92.9%", label: "test accuracy" },
+    problem: { fr: "Mesurer ce que le transfer learning apporte par rapport à un modèle entraîné de zéro.", en: "Measure what transfer learning brings compared with a model trained from scratch." },
+    objectives: { fr: ["Comparer l'entraînement de zéro, la base gelée et le dégel partiel", "Optimiser les hyperparamètres"], en: ["Compare training from scratch, a frozen backbone and partial unfreezing", "Tune the hyperparameters"] },
+    features: { fr: ["CNN entraîné de zéro : 69,9 %", "ResNet50V2 pré-entraîné à base gelée : 88,0 %", "Fine-tuning par dégel partiel : 92,9 % d'accuracy sur le test", "Grid Search et Random Search avec SciKeras"], en: ["CNN trained from scratch: 69.9%", "Pre-trained ResNet50V2 with a frozen backbone: 88.0%", "Fine-tuning with partial unfreezing: 92.9% test accuracy", "Grid Search and Random Search with SciKeras"] },
+    role: { fr: "Conception des expériences, entraînement et comparaison des modèles.", en: "Experiment design, training and model comparison." },
+    tech: ["Python", "TensorFlow/Keras", "SciKeras", "scikit-learn"],
+    github: null,
+    aliases: ["resnet", "fine-tuning", "finetuning", "fine tuning", "transfer learning", "cnn", "image"]
+  },
+  {
+    id: "audio", cat: "ai", illus: "audio",
+    name: { fr: "Classification de signaux audio", en: "Audio signal classification" },
+    period: null,
+    context: { fr: "Projet d'IA", en: "AI project" },
+    short: { fr: "Reconnaître la catégorie d'un son à partir de descripteurs acoustiques.", en: "Recognizing the category of a sound from acoustic features." },
+    problem: { fr: "Reconnaître automatiquement la catégorie d'un son à partir du signal audio.", en: "Automatically recognize the category of a sound from the audio signal." },
+    features: { fr: ["Prétraitement des signaux audio", "Extraction de MFCC, centroïde spectral et taux de passage par zéro avec Librosa", "Classification avec scikit-learn", "Évaluation par matrice de confusion, accuracy et F1-score"], en: ["Audio signal preprocessing", "MFCC, spectral centroid and zero-crossing rate extraction with Librosa", "Classification with scikit-learn", "Evaluation with a confusion matrix, accuracy and F1-score"] },
+    role: { fr: "Réalisation de toute la chaîne : prétraitement, extraction, classification et évaluation.", en: "Built the whole chain: preprocessing, feature extraction, classification and evaluation." },
+    tech: ["Python", "Librosa", "scikit-learn"],
+    github: null,
+    aliases: ["audio", "sound", "sons", "mfcc", "librosa"]
+  },
+  {
+    id: "flexore", cat: "web", illus: "mobile",
+    name: { fr: "Flexoré", en: "Flexoré" },
+    period: null,
+    context: { fr: "Application mobile", en: "Mobile app" },
+    short: { fr: "Une application Android de fitness qui génère des recommandations personnalisées avec Gemini.", en: "An Android fitness app that generates personalized recommendations with Gemini." },
+    problem: { fr: "Proposer des conseils de fitness adaptés à chaque utilisateur.", en: "Offer fitness advice tailored to each user." },
+    features: { fr: ["Application Android développée avec Flutter", "Recommandations personnalisées générées par l'API Gemini", "Formulation des consignes et contrôle de la fiabilité des réponses", "Données stockées dans Firebase (Firestore)"], en: ["Android app built with Flutter", "Personalized recommendations generated by the Gemini API", "Prompt design and checks on answer reliability", "Data stored in Firebase (Firestore)"] },
+    tech: ["Flutter", "Firebase", "Firestore", "Gemini API"],
+    github: null,
+    aliases: ["flexore", "fitness", "gemini", "mobile", "android", "flutter app"]
+  },
+  {
+    id: "agents", cat: "ai", illus: "agents",
+    name: { fr: "Système multi-agents pour le marché boursier", en: "Multi-agent system for the stock market" },
+    period: null,
+    context: { fr: "Hackathon · IHEC", en: "Hackathon · IHEC" },
+    short: { fr: "Des agents autonomes qui interagissent pour simuler des décisions sur le marché boursier.", en: "Autonomous agents interacting to simulate stock market decisions." },
+    features: { fr: ["Agents autonomes qui interagissent entre eux", "Simulation de décisions sur le marché boursier", "Conçu dans le temps limité d'un hackathon"], en: ["Autonomous agents interacting with each other", "Simulation of stock market decisions", "Built within the time limit of a hackathon"] },
+    tech: [],
+    github: null,
+    aliases: ["multi-agent", "multi agent", "multiagent", "agents", "hackathon", "ihec", "bourse", "stock"]
+  },
+  {
+    id: "erp", cat: "web", illus: "erp",
+    name: { fr: "Application ERP", en: "ERP application" },
+    period: null,
+    context: { fr: "Projet de génie logiciel · ENIT", en: "Software engineering project · ENIT" },
+    short: { fr: "Un ERP développé en équipe avec la méthode Scrum.", en: "An ERP built as a team with the Scrum method." },
+    features: { fr: ["Développement en équipe selon la méthodologie Scrum"], en: ["Team development following the Scrum methodology"] },
+    tech: ["Scrum"],
+    github: null,
+    aliases: ["erp", "scrum", "genie logiciel", "software engineering"]
+  },
+  {
+    id: "linkage", cat: "ai", illus: "linkage",
+    name: { fr: "Rapprochement d'enregistrements", en: "Record linkage" },
+    period: null,
+    context: { fr: "Projet de fin d'année I · ENIT", en: "1st-year project · ENIT" },
+    short: { fr: "Identifier les enregistrements qui désignent une même entité dans des sources de données différentes.", en: "Identifying records that refer to the same entity across different data sources." },
+    tech: [],
+    github: null,
+    aliases: ["record linkage", "rapprochement", "linkage", "pfa 1", "pfa1", "dedoublonnage"]
+  }
+];
+
+var SKILLS = [
+  { key: "lang", color: "pink", icon: "code", name: { fr: "Langages de programmation", en: "Programming languages" }, items: ["Python", "Java", "JavaScript", "C#", "SQL", "Bash"] },
+  { key: "web", color: "sky", icon: "web", name: { fr: "Développement web et mobile", en: "Web & mobile development" }, items: ["React", "Node.js", "Spring Boot", "FastAPI", "Flutter"] },
+  { key: "fw", color: "pink", icon: "brain", name: { fr: "Frameworks IA et data", en: "AI & data frameworks" }, items: ["TensorFlow/Keras", "scikit-learn", "XGBoost", "Pandas", "NumPy", "LangChain", "Ragas", "Librosa"] },
+  { key: "db", color: "sky", icon: "db", name: { fr: "Bases de données", en: "Databases" }, items: ["SQL", "Firebase Firestore", "FAISS", "Elasticsearch"] },
+  { key: "tools", color: "sky", icon: "tools", name: { fr: "Outils et plateformes", en: "Tools & platforms" }, items: ["Git", "GitLab", "Jenkins", "Docker", "Podman", "SonarQube", "Trivy", "Nexus", "ELK", "Linux (RHEL 9)", "VMware", "Google Colab", "Jupyter"] },
+  { key: "other", color: "pink", icon: "spark", name: { fr: "Autres compétences", en: "Other technical skills" }, items: ["CI/CD", "DevSecOps", "LLM & RAG", "Systèmes multi-agents / Multi-agent systems", "Traitement du signal / Signal processing", "Kubernetes (bases)", "Systèmes embarqués / IoT", "Scrum", "CRISP-DM"] }
+];
+
+var TIMELINE = [
+  { kind: "edu", date: { fr: "2022 – 2024", en: "2022 – 2024" }, title: { fr: "Classes préparatoires aux études d'ingénieurs", en: "Preparatory classes for engineering schools" }, place: { fr: "Cycle préparatoire", en: "Preparatory cycle" }, details: { fr: ["Deux années de préparation avant l'entrée en école d'ingénieurs."], en: ["Two years of preparation before engineering school."] } },
+  { kind: "edu", date: { fr: "2024 – 2027", en: "2024 – 2027" }, title: { fr: "Cycle ingénieur en informatique", en: "Engineering degree in Computer Science" }, place: { fr: "ENIT, Tunis", en: "ENIT, Tunis" }, details: { fr: ["Projets : détection d'arythmies (ECG), détection de crises (EEG), fine-tuning d'un ResNet50V2, ERP en Scrum, rapprochement d'enregistrements."], en: ["Projects: arrhythmia detection (ECG), seizure detection (EEG), ResNet50V2 fine-tuning, Scrum ERP, record linkage."] } },
+  { kind: "work", date: { fr: "Juin – Août 2026", en: "June – August 2026" }, title: { fr: "Stagiaire ingénieure DevOps", en: "DevOps Engineering Intern" }, place: { fr: "BNA Bank, Tunis", en: "BNA Bank, Tunis" }, open: true, details: { fr: ["Modernisation de la chaîne CI/CD de Declaris (Spring Boot, Angular)", "Pipeline Jenkins avec SonarQube, Trivy et déploiement de conteneurs Podman", "Supervision par logs centralisés (ELK) et documentation", "Démonstration de bout en bout lors de la soutenance"], en: ["Modernized the Declaris CI/CD chain (Spring Boot, Angular)", "Jenkins pipeline with SonarQube, Trivy and Podman container deployment", "Monitoring through centralized logs (ELK) and documentation", "End-to-end demo at the defense"] } },
+  { kind: "edu", date: { fr: "2026 – 2027", en: "2026 – 2027" }, title: { fr: "Master de recherche en Technologie des Systèmes d'Information", en: "Research Master's in Information Systems Technology" }, place: { fr: "ENIT, Tunis · en parallèle du cycle ingénieur", en: "ENIT, Tunis · alongside the engineering degree" }, details: { fr: ["Module Research Topics : analyse critique d'articles scientifiques."], en: ["Research Topics module: critical analysis of scientific papers."] } },
+  { kind: "next", date: { fr: "Février 2027", en: "February 2027" }, title: { fr: "Stage de fin d'études (6 mois)", en: "End-of-studies internship (6 months)" }, place: { fr: "À venir · DevOps, Cloud ou IA, en France ou en Europe", en: "Upcoming · DevOps, Cloud or AI, in France or Europe" }, details: { fr: ["Je suis à la recherche de ce stage. Écrivez-moi si vous avez un sujet."], en: ["I am looking for this internship. Get in touch if you have a topic."] } }
+];
+
+var ORGS = [
+  { name: "IEEE ENIT Student Branch", role: { fr: "Cheffe de projet", en: "Project lead" } },
+  { name: "ENIT Junior Entreprise", role: { fr: "Équipe business development, co-responsable du Forum ENIT Entreprise", en: "Business development team, co-lead of the ENIT Company Forum" } },
+  { name: "Securinets ENIT", role: { fr: "Projet d'infrastructure réseau", en: "Network infrastructure project" } },
+  { name: "G2FOSS", role: { fr: "Lancement des activités de développement, organisation d'événements", en: "Launched development activities, event organization" } }
+];
+
+/* =========================================================
+   LANGUE
+   ========================================================= */
+var LANG = "fr";
+function L(o) { if (o == null) return ""; if (typeof o === "string") return o; return o[LANG] != null ? o[LANG] : o.fr; }
+function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+function setLang(l) {
+  LANG = l;
+  var root = document.documentElement;
+  root.classList.toggle("en", l === "en");
+  root.setAttribute("lang", l);
+  document.getElementById("langBtn").innerHTML = l === "en" ? '<span style="opacity:.5">FR</span> · <b>EN</b>' : '<b>FR</b> · <span style="opacity:.5">EN</span>';
+  document.getElementById("cvLink").setAttribute("href", l === "en" ? "cv-eya-lakhal-en.pdf" : "cv-eya-lakhal-fr.pdf");
+  document.getElementById("chatIn").setAttribute("placeholder", l === "en" ? "Ask about Eya…" : "Posez une question sur Eya…");
+  renderSkills(); renderFilters(); renderProjects(); renderTimeline(); renderOrgs(); renderSuggestions();
+  if (window.__bubbleRefresh) window.__bubbleRefresh();
+}
+
+/* =========================================================
+   ICÔNES ET ILLUSTRATIONS
+   ========================================================= */
+var ICONS = {
+  code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/></svg>',
+  web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M8 21h8"/></svg>',
+  brain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M8 7h2M8 17h2M14 6l2.5 4.5M14 18l2.5-4.5M6 9v6"/></svg>',
+  db: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>',
+  tools: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>',
+  spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg>',
+  github: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>'
+};
+
+function illus(kind) {
+  var v = '<svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
+  if (kind === "pipeline") {
+    v += '<line x1="48" y1="78" x2="272" y2="78" class="s-faint" stroke-width="2" stroke-dasharray="4 5"/>';
+    var xs = [48, 123, 198, 272], labels = ["build", "test", "scan", "deploy"];
+    for (var i = 0; i < 4; i++) {
+      var last = i === 3;
+      v += '<circle cx="' + xs[i] + '" cy="78" r="18" class="f-surf ' + (last ? "s-pink" : "s-sky") + '" stroke-width="2"/>';
+      if (!last) v += '<path d="M' + (xs[i] - 7) + ' 78 l5 5 l9 -10" class="s-sky" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+      else v += '<path d="M265 78 h13 m-5 -5 l5 5 l-5 5" class="s-pink" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+      v += '<text x="' + xs[i] + '" y="122" text-anchor="middle" class="t-mono">' + labels[i] + '</text>';
+    }
+  } else if (kind === "ecg") {
+    v += '<line x1="20" y1="90" x2="300" y2="90" class="s-line" stroke-width="1"/>';
+    v += '<path d="M20 90 h30 q6 -10 12 0 h10 l4 8 l7 -62 l7 82 l5 -28 h14 q10 -18 20 0 h22 q6 -10 12 0 h10 l4 8 l7 -62 l7 82 l5 -28 h14 q10 -18 20 0 h40" class="s-pink" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
+    v += '<rect x="183" y="22" width="36" height="96" rx="6" class="f-skysoft s-sky" stroke-width="1.5" stroke-dasharray="4 4"/>';
+  } else if (kind === "eeg") {
+    var ys = [42, 70, 98, 126];
+    for (var k = 0; k < 4; k++) {
+      var p = "M20 " + ys[k];
+      for (var x = 20; x <= 300; x += 10) { var amp = (x > 170 && x < 230) ? 13 : 4; p += " L" + x + " " + (ys[k] + Math.sin((x + k * 17) / 5.3) * amp).toFixed(1); }
+      v += '<path d="' + p + '" class="' + (k === 1 ? "s-pink" : "s-faint") + '" stroke-width="' + (k === 1 ? 2.4 : 1.6) + '" stroke-linejoin="round"/>';
+    }
+    v += '<rect x="168" y="22" width="64" height="120" rx="8" class="f-pinksoft"/>';
+  } else if (kind === "rag") {
+    for (var d = 0; d < 3; d++) {
+      var dx = 40 + d * 10, dy = 30 + d * 10;
+      v += '<rect x="' + dx + '" y="' + dy + '" width="70" height="88" rx="6" class="f-surf s-sky" stroke-width="1.6"/>';
+    }
+    v += '<line x1="72" y1="72" x2="112" y2="72" class="s-faint" stroke-width="2"/><line x1="72" y1="84" x2="106" y2="84" class="s-faint" stroke-width="2"/><line x1="72" y1="96" x2="110" y2="96" class="s-faint" stroke-width="2"/>';
+    v += '<path d="M138 80 h40 m-7 -7 l7 7 l-7 7" class="s-faint" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+    v += '<path d="M196 48 h86 a10 10 0 0 1 10 10 v40 a10 10 0 0 1 -10 10 h-56 l-16 14 v-14 h-14 a10 10 0 0 1 -10 -10 v-40 a10 10 0 0 1 10 -10z" class="f-surf s-pink" stroke-width="1.8"/>';
+    v += '<line x1="208" y1="68" x2="270" y2="68" class="s-faint" stroke-width="2"/><line x1="208" y1="80" x2="256" y2="80" class="s-faint" stroke-width="2"/><text x="262" y="96" class="t-mono" style="fill:var(--pink)">[1]</text>';
+  } else if (kind === "cnn") {
+    var sizes = [[34, 96], [26, 78], [20, 60], [14, 42]], x0 = 44;
+    for (var c = 0; c < 4; c++) {
+      var w = sizes[c][0], h = sizes[c][1];
+      v += '<rect x="' + x0 + '" y="' + (80 - h / 2) + '" width="' + w + '" height="' + h + '" rx="4" class="f-surf s-sky" stroke-width="1.6"/>';
+      v += '<rect x="' + (x0 + 6) + '" y="' + (80 - h / 2 - 6) + '" width="' + w + '" height="' + h + '" rx="4" class="s-line" stroke-width="1"/>';
+      x0 += w + 24;
+    }
+    for (var o = 0; o < 5; o++) { v += '<line x1="' + (x0 - 6) + '" y1="80" x2="' + (x0 + 34) + '" y2="' + (44 + o * 18) + '" class="s-line" stroke-width="1"/><circle cx="' + (x0 + 40) + '" cy="' + (44 + o * 18) + '" r="6" class="' + (o === 2 ? "f-pink" : "f-surf s-faint") + '" stroke-width="1.5"/>'; }
+  } else if (kind === "audio") {
+    for (var b = 0; b < 30; b++) {
+      var hh = 10 + Math.abs(Math.sin(b * 0.55) * 46) + (b % 3) * 4;
+      v += '<rect x="' + (34 + b * 8.6) + '" y="' + (80 - hh / 2) + '" width="4.6" height="' + hh.toFixed(1) + '" rx="2.3" class="' + (b > 12 && b < 18 ? "f-pink" : "f-sky") + '" opacity="' + (b > 12 && b < 18 ? 1 : 0.55) + '"/>';
+    }
+  } else if (kind === "mobile") {
+    v += '<rect x="122" y="14" width="76" height="132" rx="14" class="f-surf s-sky" stroke-width="1.8"/><line x1="148" y1="24" x2="172" y2="24" class="s-faint" stroke-width="2.5" stroke-linecap="round"/>';
+    v += '<rect x="134" y="40" width="52" height="34" rx="6" class="f-skysoft"/><line x1="134" y1="88" x2="186" y2="88" class="s-faint" stroke-width="2"/><line x1="134" y1="100" x2="172" y2="100" class="s-faint" stroke-width="2"/><line x1="134" y1="112" x2="180" y2="112" class="s-faint" stroke-width="2"/>';
+    v += '<path d="M226 46 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5z" class="f-pink"/>';
+  } else if (kind === "agents") {
+    var nodes = [[100, 52], [220, 52], [160, 120]];
+    v += '<path d="M100 52 L220 52 L160 120 Z" class="s-faint" stroke-width="1.6" stroke-dasharray="5 5"/>';
+    for (var n = 0; n < 3; n++) { v += '<circle cx="' + nodes[n][0] + '" cy="' + nodes[n][1] + '" r="20" class="f-surf ' + (n === 2 ? "s-pink" : "s-sky") + '" stroke-width="2"/><circle cx="' + nodes[n][0] + '" cy="' + nodes[n][1] + '" r="5" class="' + (n === 2 ? "f-pink" : "f-sky") + '"/>'; }
+    v += '<path d="M244 128 l14 -14 l12 8 l18 -26" class="s-pink" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>';
+  } else if (kind === "erp") {
+    var cols = [40, 130, 220];
+    for (var cc = 0; cc < 3; cc++) {
+      v += '<rect x="' + cols[cc] + '" y="22" width="70" height="118" rx="8" class="f-surf s-line" stroke-width="1.2"/><line x1="' + (cols[cc] + 12) + '" y1="36" x2="' + (cols[cc] + 44) + '" y2="36" class="s-faint" stroke-width="2.5" stroke-linecap="round"/>';
+      var cards = cc === 0 ? 3 : (cc === 1 ? 2 : 1);
+      for (var cd = 0; cd < cards; cd++) { var pink = (cc === 1 && cd === 0); v += '<rect x="' + (cols[cc] + 9) + '" y="' + (48 + cd * 28) + '" width="52" height="20" rx="5" class="' + (pink ? "f-pinksoft s-pink" : "f-skysoft s-sky") + '" stroke-width="1.2"/>'; }
+    }
+  } else if (kind === "linkage") {
+    for (var r = 0; r < 4; r++) {
+      v += '<rect x="40" y="' + (28 + r * 28) + '" width="80" height="20" rx="5" class="f-surf s-sky" stroke-width="1.4"/>';
+      v += '<rect x="200" y="' + (28 + r * 28) + '" width="80" height="20" rx="5" class="f-surf s-sky" stroke-width="1.4"/>';
+    }
+    v += '<path d="M120 38 C160 38 160 94 200 94" class="s-pink" stroke-width="2"/><path d="M120 66 C160 66 160 38 200 38" class="s-pink" stroke-width="2"/><path d="M120 122 C160 122 160 122 200 122" class="s-pink" stroke-width="2"/>';
+  }
+  return v + "</svg>";
+}
+
+/* =========================================================
+   RENDU : COMPÉTENCES, PROJETS, PARCOURS
+   ========================================================= */
+function renderSkills() {
+  var g = document.getElementById("skillsGrid"), h = "";
+  SKILLS.forEach(function (s) {
+    h += '<div class="scard"><div class="ico ' + s.color + '">' + ICONS[s.icon] + '</div><h3>' + esc(L(s.name)) + '</h3><div class="chips">' +
+      s.items.map(function (i) { return '<span class="chip">' + esc(splitBi(i)) + '</span>'; }).join("") + '</div></div>';
+  });
+  g.innerHTML = h;
+}
+function splitBi(s) { if (s.indexOf(" / ") > -1) { var p = s.split(" / "); return LANG === "en" ? p[1] : p[0]; } return s; }
+
+var FILTER = "all";
+var FILTERS = [
+  { key: "all", name: { fr: "Tous", en: "All" } },
+  { key: "devops", name: { fr: "DevOps", en: "DevOps" } },
+  { key: "ai", name: { fr: "IA et data", en: "AI & data" } },
+  { key: "web", name: { fr: "Web et mobile", en: "Web & mobile" } }
+];
+function renderFilters() {
+  var f = document.getElementById("filters");
+  f.innerHTML = FILTERS.map(function (x) {
+    var count = x.key === "all" ? PROJECTS.length : PROJECTS.filter(function (p) { return p.cat === x.key; }).length;
+    return '<button type="button" class="fbtn" data-f="' + x.key + '" aria-pressed="' + (FILTER === x.key) + '">' + esc(L(x.name)) + ' <span style="opacity:.6">' + count + '</span></button>';
+  }).join("");
+}
+function domLabel(cat) { return cat === "devops" ? "DevOps" : (cat === "ai" ? (LANG === "en" ? "AI" : "IA") : (LANG === "en" ? "Web & mobile" : "Web et mobile")); }
+function metricText(p) { return LANG === "en" ? p.metric.valueEn : p.metric.value; }
+function renderProjects() {
+  var g = document.getElementById("pgrid");
+  g.innerHTML = PROJECTS.map(function (p) {
+    var hidden = FILTER !== "all" && p.cat !== FILTER;
+    var chips = p.tech.slice(0, 5).map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join("");
+    return '<article class="pcard" data-id="' + p.id + '"' + (hidden ? " hidden" : "") + '>' +
+      '<div class="pillus">' + illus(p.illus) + '</div>' +
+      '<div class="pbody">' +
+        '<div class="pmeta"><span class="dom ' + p.cat + '">' + domLabel(p.cat) + '</span><span>' + esc(L(p.context)) + '</span>' + (p.inProgress ? '<span class="status">' + (LANG === "en" ? "in progress" : "en cours") + '</span>' : "") + '</div>' +
+        '<h3>' + esc(L(p.name)) + '</h3>' +
+        (p.metric ? '<div class="pmetric">' + esc(metricText(p)) + '<small>' + esc(p.metric.label) + '</small></div>' : "") +
+        '<p>' + esc(L(p.short)) + '</p>' +
+        (chips ? '<div class="chips">' + chips + '</div>' : "") +
+        '<div class="pactions"><button type="button" class="abtn" data-open="' + p.id + '">' + (LANG === "en" ? "Details" : "Détails") + '</button>' +
+        (p.github ? '<a class="abtn" href="' + p.github + '" target="_blank" rel="noopener">' + ICONS.github + 'GitHub</a>' : "") + '</div>' +
+      '</div></article>';
+  }).join("");
+}
+function sec(title, content) { return '<div class="pd-sec"><h4>' + esc(title) + '</h4>' + content + '</div>'; }
+function ul(list) { return '<ul>' + list.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul>'; }
+function openProject(id) {
+  var p = PROJECTS.filter(function (x) { return x.id === id; })[0]; if (!p) return;
+  var en = LANG === "en", h = "";
+  h += '<div class="pd-illus">' + illus(p.illus) + '</div><div class="pd-body">';
+  h += '<div class="pd-head"><div class="pmeta"><span class="dom ' + p.cat + '">' + domLabel(p.cat) + '</span><span>' + esc(L(p.context)) + '</span>' + (p.period ? '<span>· ' + esc(L(p.period)) + '</span>' : "") + (p.inProgress ? '<span class="status">' + (en ? "in progress" : "en cours") + '</span>' : "") + '</div><h3 id="pdTitle">' + esc(L(p.name)) + '</h3>' + (p.metric ? '<div class="pmetric">' + esc(metricText(p)) + '<small>' + esc(p.metric.label) + '</small></div>' : "") + '</div>';
+  h += sec(en ? "Overview" : "Description", '<p>' + esc(L(p.short)) + '</p>');
+  if (p.problem) h += sec(en ? "The problem" : "Le problème", '<p>' + esc(L(p.problem)) + '</p>');
+  if (p.objectives) h += sec(en ? "Goals" : "Objectifs", ul(L(p.objectives)));
+  if (p.features) h += sec(en ? "Main features" : "Fonctionnalités principales", ul(L(p.features)));
+  if (p.role) h += sec(en ? "My role" : "Mon rôle", '<p>' + esc(L(p.role)) + '</p>');
+  if (p.difficulties) h += sec(en ? "Technical challenges" : "Difficultés techniques", ul(L(p.difficulties)));
+  if (p.tech.length) h += sec(en ? "Technologies" : "Technologies", '<div class="chips">' + p.tech.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join("") + '</div>');
+  h += '<div class="pactions">' + (p.github ? '<a class="abtn" href="' + p.github + '" target="_blank" rel="noopener">' + ICONS.github + (en ? "View on GitHub" : "Voir sur GitHub") + '</a>' : '<span class="pd-note">' + (en ? "Repository not public yet." : "Dépôt pas encore public.") + '</span>') + '</div>';
+  h += '</div>';
+  document.getElementById("pdIn").innerHTML = h;
+  var d = document.getElementById("pd");
+  if (typeof d.showModal === "function") d.showModal(); else d.setAttribute("open", "");
+  document.getElementById("pdIn").scrollTop = 0;
+}
+function renderTimeline() {
+  var t = document.getElementById("timeline");
+  t.innerHTML = TIMELINE.map(function (it, i) {
+    var open = !!it.open;
+    return '<li class="tl-item ' + (it.kind === "work" ? "work" : (it.kind === "next" ? "next" : "")) + '">' +
+      '<button type="button" class="tl-head" aria-expanded="' + open + '" aria-controls="tl' + i + '"><span class="tl-date">' + esc(L(it.date)) + '</span><span class="tl-title">' + esc(L(it.title)) + '</span><span class="tl-place">' + esc(L(it.place)) + '</span></button>' +
+      '<div class="tl-body" id="tl' + i + '"' + (open ? "" : " hidden") + '>' + ul(L(it.details)) + '</div></li>';
+  }).join("");
+}
+function renderOrgs() {
+  document.getElementById("orgs").innerHTML = ORGS.map(function (o) { return '<div class="org"><b>' + esc(o.name) + '</b><span>' + esc(L(o.role)) + '</span></div>'; }).join("");
+}
+
+/* =========================================================
+   INTERACTIONS GÉNÉRALES
+   ========================================================= */
+document.getElementById("filters").addEventListener("click", function (e) {
+  var b = e.target.closest(".fbtn"); if (!b) return;
+  FILTER = b.getAttribute("data-f"); renderFilters();
+  document.querySelectorAll(".pcard").forEach(function (c) {
+    var p = PROJECTS.filter(function (x) { return x.id === c.getAttribute("data-id"); })[0];
+    c.hidden = FILTER !== "all" && p.cat !== FILTER;
+  });
+});
+document.getElementById("pgrid").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-open]"); if (b) openProject(b.getAttribute("data-open"));
+});
+document.getElementById("pgrid").addEventListener("pointermove", function (e) {
+  var c = e.target.closest(".pcard"); if (!c) return;
+  var r = c.getBoundingClientRect();
+  c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+});
+document.getElementById("pdClose").addEventListener("click", function () { var d = document.getElementById("pd"); if (d.close) d.close(); else d.removeAttribute("open"); });
+document.getElementById("pd").addEventListener("click", function (e) { if (e.target === this && this.close) this.close(); });
+document.getElementById("timeline").addEventListener("click", function (e) {
+  var b = e.target.closest(".tl-head"); if (!b) return;
+  var open = b.getAttribute("aria-expanded") === "true";
+  b.setAttribute("aria-expanded", String(!open));
+  document.getElementById(b.getAttribute("aria-controls")).hidden = open;
+});
+document.getElementById("langBtn").addEventListener("click", function () {
+  var n = LANG === "fr" ? "en" : "fr"; setLang(n);
+  try { localStorage.setItem("el-lang", n); } catch (e) {}
+});
+var menuBtn = document.getElementById("menuBtn"), nav = document.getElementById("nav");
+menuBtn.addEventListener("click", function () { var o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", String(o)); });
+nav.addEventListener("click", function (e) { if (e.target.closest("a")) { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+/* Scroll progress + active link */
+var prog = document.getElementById("progress"), ticking = false;
+var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+function onScroll() {
+  var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+  prog.style.transform = "scaleX(" + (max > 0 ? Math.min(1, h.scrollTop / max) : 0) + ")";
+  var current = "";
+  ["about", "skills", "projects", "journey", "contact"].forEach(function (id) { var el = document.getElementById(id); if (el && el.getBoundingClientRect().top < 140) current = id; });
+  navLinks.forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + current); });
+  ticking = false;
+}
+window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+
+/* Copy buttons */
+function copyText(text, onOk, onFail) {
+  try { navigator.clipboard.writeText(text).then(onOk, onFail); } catch (e) { onFail(); }
+}
+document.addEventListener("click", function (e) {
+  var b = e.target.closest(".copy"); if (!b) return;
+  var old = b.innerHTML;
+  copyText(b.getAttribute("data-copy"), function () { b.textContent = LANG === "en" ? "copied" : "copié"; setTimeout(function () { b.innerHTML = old; }, 1500); },
+    function () { var t = document.getElementById("mailText"); var r = document.createRange(); r.selectNodeContents(t); var s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+});
+
+/* Contact form */
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var en = LANG === "en";
+  var name = document.getElementById("cf-name").value.trim();
+  var email = document.getElementById("cf-email").value.trim();
+  var msg = document.getElementById("cf-msg").value.trim();
+  var out = document.getElementById("formMsg"), btn = document.getElementById("sendBtn");
+  out.className = "form-msg";
+  if (!name || !msg || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    out.classList.add("err");
+    out.textContent = en ? "Please fill in your name, a valid email and your message." : "Indiquez votre nom, un e-mail valide et votre message.";
+    return;
+  }
+  btn.classList.remove("flying"); void btn.offsetWidth; btn.classList.add("flying");
+  if (CONFIG.CONTACT_ENDPOINT) {
+    fetch(CONFIG.CONTACT_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify({ name: name, email: email, message: msg }) })
+      .then(function (r) { if (!r.ok) throw new Error(); out.classList.add("ok"); out.textContent = en ? "Message sent. Thank you!" : "Message envoyé. Merci !"; e.target.reset(); })
+      .catch(function () { composeFallback(name, email, msg); });
+  } else {
+    composeFallback(name, email, msg);
+  }
+});
+function composeFallback(name, email, msg) {
+  var en = LANG === "en";
+  var text = (en ? "Hello Eya,\n\n" : "Bonjour Eya,\n\n") + msg + "\n\n" + name + "\n" + email;
+  var box = document.getElementById("compose"), ta = document.getElementById("cf-out"), out = document.getElementById("formMsg");
+  ta.value = text; box.hidden = false;
+  copyText(text, function () {
+    out.className = "form-msg ok";
+    out.textContent = en ? "Message copied. Paste it into an email to " + PROFILE.email + "." : "Message copié. Collez-le dans un e-mail à " + PROFILE.email + ".";
+  }, function () {
+    out.className = "form-msg ok";
+    out.textContent = en ? "Copy the message below and send it to " + PROFILE.email + "." : "Copiez le message ci-dessous et envoyez-le à " + PROFILE.email + ".";
+    ta.focus(); ta.select();
+  });
+}
+
+/* =========================================================
+   CHATBOT « PIP » : répond uniquement à partir des données ci-dessus
+   ========================================================= */
+function norm(s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[’']/g, " "); }
+function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function hasWord(text, key) { return new RegExp("(^|[^a-z0-9])" + escRe(key) + "([^a-z0-9]|$)").test(text); }
+function hasStart(text, key) { return new RegExp("(^|[^a-z0-9])" + escRe(key)).test(text); }
+function anyStart(text, keys) { return keys.some(function (k) { return hasStart(text, k); }); }
+
+var TECH_INDEX = (function () {
+  var map = {};
+  function add(label, projectId, skillCat) {
+    var k = norm(label.replace(/ \(.*\)$/, ""));
+    if (!map[k]) map[k] = { label: label.replace(/ \(.*\)$/, ""), projects: [], skills: [] };
+    if (projectId && map[k].projects.indexOf(projectId) < 0) map[k].projects.push(projectId);
+    if (skillCat && map[k].skills.indexOf(skillCat) < 0) map[k].skills.push(skillCat);
+  }
+  PROJECTS.forEach(function (p) { p.tech.forEach(function (t) { add(t, p.id); if (t === "TensorFlow/Keras") { add("TensorFlow", p.id); add("Keras", p.id); } if (t === "LSTM/GRU") { add("LSTM", p.id); add("GRU", p.id); } }); });
+  SKILLS.forEach(function (s) { s.items.forEach(function (i) { if (i.indexOf(" / ") > -1) return; add(i, null, s.key); if (i === "TensorFlow/Keras") { add("TensorFlow", null, s.key); add("Keras", null, s.key); } }); });
+  add("Kubernetes", null, "other");
+  return map;
+})();
+
+var INTENTS = {
+  greet: ["bonjour", "salut", "hello", "hey", "coucou", "bonsoir", "hi"],
+  thanks: ["merci", "thank", "thanks", "super", "parfait", "great"],
+  avail: ["disponib", "available", "availability", "pfe", "stage de fin", "quand", "when", "fevrier", "february", "recrut", "hire", "cherche", "looking for"],
+  exp: ["experience", "stage", "internship", "bna", "banque", "bank", "travail", "work", "job", "professionnel", "professional"],
+  edu: ["formation", "etude", "education", "ecole", "school", "enit", "master", "diplome", "degree", "prepa", "preparatoire", "universite", "university", "parcours", "cursus", "study", "studies"],
+  langs: ["langue", "parle", "speak", "anglais", "english", "francais", "french", "arabe", "arabic", "languages spoken", "spoken"],
+  skills: ["competence", "skill", "techno", "stack", "outil", "tool", "sait faire", "maitrise", "programming", "programmation", "framework"],
+  github: ["github", "repo", "depot", "code source", "source code"],
+  contact: ["contact", "email", "e-mail", "mail", "joindre", "reach", "linkedin", "ecrire", "write", "message"],
+  orgs: ["association", "club", "ieee", "securinets", "junior entreprise", "g2foss", "activite", "activities", "benevol", "volunteer", "engagement"],
+  hobbies: ["hobby", "hobbies", "loisir", "passion", "sport", "temps libre", "free time"],
+  projects: ["projet", "project", "realisation", "portfolio", "travaux", "built", "construit"],
+  who: ["qui", "who", "presente", "presentation", "about", "profil", "profile", "eya", "elle"]
+};
+
+function P(text) { return { p: text }; }
+function UL(items) { return { ul: items }; }
+function A(label, href) { return { a: label, href: href }; }
+
+function projectAnswer(p, wantGithub) {
+  var en = LANG === "en", out = [];
+  if (wantGithub) {
+    if (p.github) out.push(P((en ? "The repository for " : "Le dépôt de ") + L(p.name) + (en ? " is here:" : " est ici :")), A(p.github.replace("https://", ""), p.github));
+    else out.push(P(en ? "The repository for " + L(p.name) + " is not public yet." : "Le dépôt de " + L(p.name) + " n'est pas encore public."));
+    return out;
+  }
+  out.push(P(L(p.name) + " (" + L(p.context) + (p.period ? ", " + L(p.period) : "") + ")." + " " + L(p.short)));
+  if (p.metric) out.push(P((en ? "Key result: " : "Résultat clé : ") + metricText(p) + " " + p.metric.label + "."));
+  if (p.tech.length) out.push(P((en ? "Technologies: " : "Technologies : ") + p.tech.join(", ") + "."));
+  if (p.github) out.push(A("GitHub · " + p.github.replace("https://github.com/", ""), p.github));
+  out.push({ btn: en ? "Open project details" : "Ouvrir la fiche du projet", open: p.id });
+  return out;
+}
+
+function techAnswer(list) {
+  var en = LANG === "en", out = [];
+  list.forEach(function (t) {
+    if (t.projects.length) {
+      var names = t.projects.map(function (id) { return L(PROJECTS.filter(function (p) { return p.id === id; })[0].name); });
+      out.push(P((en ? "Projects using " : "Projets qui utilisent ") + t.label + (en ? ":" : " :")));
+      out.push(UL(names));
+    } else if (t.skills.length) {
+      var cat = SKILLS.filter(function (s) { return s.key === t.skills[0]; })[0];
+      out.push(P(t.label + (en ? " is listed in Eya's skills (" : " figure dans les compétences d'Eya (") + (cat ? L(cat.name) : "") + (en ? "), but no project on this portfolio uses it yet." : "), mais aucun projet de ce portfolio ne l'utilise encore.")));
+    }
+  });
+  return out;
+}
+
+function answer(q) {
+  var n = norm(q), en = LANG === "en", words = n.trim().split(/\s+/).length;
+  var wantGithub = anyStart(n, INTENTS.github);
+
+  var projs = PROJECTS.filter(function (p) { return p.aliases.some(function (a) { return hasWord(n, norm(a)); }) || hasWord(n, norm(L(p.name))); });
+  var techs = Object.keys(TECH_INDEX).filter(function (k) { return k.length > 1 && hasWord(n, k); }).map(function (k) { return TECH_INDEX[k]; });
+
+  if (projs.length === 1) {
+    return projectAnswer(projs[0], wantGithub);
+  }
+  if (projs.length > 1 && !techs.length) {
+    return [P(en ? "Several projects match:" : "Plusieurs projets correspondent :"), UL(projs.map(function (p) { return L(p.name); }))];
+  }
+  if (techs.length) return techAnswer(techs);
+
+  if (words <= 3 && anyStart(n, INTENTS.greet)) {
+    return [P(en ? "Hi! I'm Pip. Ask me about Eya's background, skills, projects or how to contact her." : "Bonjour ! Je suis Pip. Posez-moi une question sur le parcours d'Eya, ses compétences, ses projets ou ses coordonnées.")];
+  }
+  if (anyStart(n, INTENTS.thanks) && words <= 4) return [P(en ? "You're welcome! Anything else about Eya?" : "Avec plaisir ! Une autre question sur Eya ?")];
+  if (anyStart(n, INTENTS.avail)) {
+    return [P(en ? "Eya is looking for a 6-month end-of-studies internship starting in February 2027, in DevOps, Cloud or AI, in France or Europe." : "Eya recherche un stage de fin d'études de 6 mois à partir de février 2027, en DevOps, Cloud ou IA, en France ou en Europe."), P(en ? "You can reach her at " + PROFILE.email + "." : "Vous pouvez la contacter à " + PROFILE.email + ".")];
+  }
+  if (anyStart(n, INTENTS.exp)) {
+    var w = TIMELINE[2];
+    return [P(L(w.title) + " · " + L(w.place) + " · " + L(w.date) + "."), UL(L(w.details)), { btn: en ? "Open the Declaris project" : "Ouvrir le projet Declaris", open: "declaris" }];
+  }
+  if (anyStart(n, INTENTS.edu)) {
+    return [P(en ? "Eya's education:" : "Le parcours d'Eya :"), UL(TIMELINE.filter(function (t) { return t.kind === "edu"; }).map(function (t) { return L(t.date) + " · " + L(t.title) + " (" + L(t.place) + ")"; }))];
+  }
+  if (anyStart(n, INTENTS.langs)) {
+    return [P(en ? "Eya speaks Arabic (native), French (fluent) and English (fluent)." : "Eya parle arabe (langue maternelle), français (courant) et anglais (courant).")];
+  }
+  if (anyStart(n, INTENTS.skills)) {
+    return [P(en ? "Eya's skills by category:" : "Les compétences d'Eya par catégorie :"), UL(SKILLS.map(function (s) { return L(s.name) + " : " + s.items.map(splitBi).join(", "); })), P(en ? "Ask me \"projects with Docker\" to see where a technology is used." : "Demandez-moi « projets avec Docker » pour voir où une technologie est utilisée.")];
+  }
+  if (wantGithub) {
+    var withRepo = PROJECTS.filter(function (p) { return p.github; });
+    var out = [P(en ? "Eya's GitHub profile:" : "Le profil GitHub d'Eya :"), A("github.com/eya-lakhal", PROFILE.github), P(en ? "Public repositories linked on this portfolio:" : "Dépôts publics liés à ce portfolio :")];
+    withRepo.forEach(function (p) { out.push(A(L(p.name), p.github)); });
+    return out;
+  }
+  if (anyStart(n, INTENTS.contact)) {
+    return [P((en ? "Email: " : "E-mail : ") + PROFILE.email), A("LinkedIn · eya-lakhal-058277373", PROFILE.linkedin), A("GitHub · eya-lakhal", PROFILE.github)];
+  }
+  if (anyStart(n, INTENTS.orgs)) {
+    return [P(en ? "Eya's student involvement:" : "L'engagement associatif d'Eya :"), UL(ORGS.map(function (o) { return o.name + " : " + L(o.role); }))];
+  }
+  if (anyStart(n, INTENTS.hobbies)) {
+    return [P(en ? "Off screen, Eya enjoys swimming, gymnastics and singing." : "En dehors de l'écran, Eya aime la natation, la gymnastique et le chant.")];
+  }
+  if (anyStart(n, INTENTS.projects)) {
+    return [P(en ? "Eya's projects (" + PROJECTS.length + "):" : "Les projets d'Eya (" + PROJECTS.length + ") :"), UL(PROJECTS.map(function (p) { return L(p.name) + " · " + domLabel(p.cat); })), P(en ? "Ask me about one of them by name." : "Demandez-moi l'un d'eux par son nom.")];
+  }
+  if (anyStart(n, INTENTS.who)) {
+    return [P(en ? "Eya Lakhal is a final-year engineering student in computer science at ENIT (Tunis), also enrolled in a research Master's in Information Systems Technology. She works between DevOps (CI/CD, containers, monitoring) and AI (deep learning, LLM, RAG)." : "Eya Lakhal est élève ingénieure en dernière année d'informatique à l'ENIT (Tunis), et suit en parallèle un Master de recherche en Technologie des Systèmes d'Information. Elle travaille entre le DevOps (CI/CD, conteneurs, supervision) et l'IA (deep learning, LLM, RAG)."), P(en ? "She did a DevOps internship at BNA Bank in 2026 and is looking for a 6-month internship from February 2027." : "Elle a fait un stage DevOps chez BNA Bank en 2026 et cherche un stage de 6 mois à partir de février 2027.")];
+  }
+  return null;
+}
+
+var chatLog = document.getElementById("chatLog");
+function addMsg(who, parts) {
+  var m = document.createElement("div"); m.className = "m " + who;
+  if (typeof parts === "string") { var p = document.createElement("p"); p.textContent = parts; m.appendChild(p); }
+  else parts.forEach(function (x) {
+    if (x.p) { var p2 = document.createElement("p"); p2.textContent = x.p; m.appendChild(p2); }
+    else if (x.ul) { var u = document.createElement("ul"); x.ul.forEach(function (li) { var l = document.createElement("li"); l.textContent = li; u.appendChild(l); }); m.appendChild(u); }
+    else if (x.a) { var pa = document.createElement("p"); var a = document.createElement("a"); a.href = x.href; a.target = "_blank"; a.rel = "noopener"; a.textContent = x.a; pa.appendChild(a); m.appendChild(pa); }
+    else if (x.btn) { var pb = document.createElement("p"); var b = document.createElement("button"); b.type = "button"; b.className = "abtn"; b.style.marginTop = "4px"; b.textContent = x.btn; b.addEventListener("click", function () { openProject(x.open); }); pb.appendChild(b); m.appendChild(pb); }
+  });
+  chatLog.appendChild(m); chatLog.scrollTop = chatLog.scrollHeight;
+  return m;
+}
+function fallbackParts() {
+  var en = LANG === "en";
+  return [P(en ? "I can't find that in Eya's portfolio, and I prefer not to guess." : "Je ne trouve pas cette information dans le portfolio d'Eya, et je préfère ne pas inventer."), P(en ? "Try her projects, skills, education, internship or contact details, or write to her at " + PROFILE.email + "." : "Essayez ses projets, ses compétences, sa formation, son stage ou ses coordonnées, ou écrivez-lui à " + PROFILE.email + ".")];
+}
+function ask(q) {
+  q = q.trim(); if (!q) return;
+  addMsg("me", q);
+  var typing = document.createElement("div"); typing.className = "m bot"; typing.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+  chatLog.appendChild(typing); chatLog.scrollTop = chatLog.scrollHeight;
+  var local = answer(q);
+  var finish = function (parts) { typing.remove(); addMsg("bot", parts); };
+  if (local) { setTimeout(function () { finish(local); }, 380); return; }
+  if (CONFIG.CHAT_API_ENDPOINT) {
+    fetch(CONFIG.CHAT_API_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question: q, lang: LANG }) })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) { finish(d && d.answer ? [P(String(d.answer))] : fallbackParts()); })
+      .catch(function () { finish(fallbackParts()); });
+  } else { setTimeout(function () { finish(fallbackParts()); }, 380); }
+}
+var SUGG = {
+  fr: ["Qui est Eya ?", "Ses projets", "Projets avec Docker", "Son stage chez BNA", "Est-elle disponible ?", "Comment la contacter ?"],
+  en: ["Who is Eya?", "Her projects", "Projects with Docker", "Her internship at BNA", "Is she available?", "How to contact her?"]
+};
+function renderSuggestions() {
+  var s = document.getElementById("sugg");
+  s.innerHTML = SUGG[LANG].map(function (q) { return '<button type="button">' + esc(q) + '</button>'; }).join("");
+}
+document.getElementById("sugg").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) ask(b.textContent); });
+document.getElementById("chatForm").addEventListener("submit", function (e) { e.preventDefault(); var i = document.getElementById("chatIn"); ask(i.value); i.value = ""; });
+var chat = document.getElementById("chat"), fab = document.getElementById("chatFab"), greeted = false;
+function openChat(open) {
+  chat.hidden = !open; fab.setAttribute("aria-expanded", String(open));
+  if (open) {
+    chat.classList.remove("open-anim"); void chat.offsetWidth; chat.classList.add("open-anim");
+    document.getElementById("chatBadge").style.display = "none";
+    if (!greeted) { greeted = true; addMsg("bot", [P(LANG === "en" ? "Hi! I'm Pip. I answer from the information on Eya's portfolio only. What would you like to know?" : "Bonjour ! Je suis Pip. Je réponds uniquement à partir des informations du portfolio d'Eya. Que voulez-vous savoir ?")]); }
+    setTimeout(function () { document.getElementById("chatIn").focus(); }, 50);
+  } else { fab.focus(); }
+}
+fab.addEventListener("click", function () { openChat(chat.hidden); });
+document.getElementById("chatX").addEventListener("click", function () { openChat(false); });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !chat.hidden && !document.getElementById("pd").open) openChat(false); });
+
+/* =========================================================
+   INIT
+   ========================================================= */
+(function () {
+  var saved = "fr";
+  try { saved = localStorage.getItem("el-lang") || "fr"; } catch (e) {}
+  setLang(saved === "en" ? "en" : "fr");
+  onScroll();
+})();
+
+/* =========================================================
+   PIP : robot 3D d'accueil (Three.js)
+   ========================================================= */
+(function () {
+  var LINES = {
+    fr: [
+      "Bonjour ! Je suis Pip, l'assistant d'Eya. Cliquez sur moi.",
+      "Build ✓ Test ✓ Deploy ✓. Eya aime quand tout passe au vert.",
+      "Je suis fait de sphères, de cylindres et de beaucoup de bonne volonté.",
+      "Elle cherche un stage dès février 2027. Moi, je cherche juste un câble USB.",
+      "Une question ? Ouvrez le chat en bas à droite, j'y réponds aussi."
+    ],
+    en: [
+      "Hi! I'm Pip, Eya's assistant. Click me.",
+      "Build ✓ Test ✓ Deploy ✓. Eya likes it when everything turns green.",
+      "I'm made of spheres, cylinders and a lot of goodwill.",
+      "She's looking for an internship from February 2027. I'm just looking for a USB cable.",
+      "Got a question? Open the chat at the bottom right, I answer there too."
+    ]
+  };
+  var idx = 0, bubble = document.getElementById("bubble"), bt = document.getElementById("bubbleText");
+  function showLine(i) {
+    bubble.classList.add("swap");
+    setTimeout(function () { bt.textContent = LINES[LANG][i]; bubble.classList.remove("swap"); }, 160);
+  }
+  bt.textContent = LINES[LANG][0];
+  window.__bubbleRefresh = function () { bt.textContent = LINES[LANG][idx]; };
+  function nextLine() { idx = (idx + 1) % LINES.fr.length; showLine(idx); }
+
+  var stage = document.getElementById("stage"), canvas = document.getElementById("bot");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ok = typeof THREE !== "undefined";
+  var renderer = null;
+  if (ok) { try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { ok = false; } }
+  if (!ok || !renderer) { document.documentElement.classList.add("no3d"); stage.addEventListener("click", nextLine); return; }
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+  camera.position.set(0, 0.35, 8.6);
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x1a1a24, 0.75));
+  var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(3, 5, 5); scene.add(key);
+  var pinkL = new THREE.PointLight(0xff8db6, 1.6, 20); pinkL.position.set(-4, 1.5, 3); scene.add(pinkL);
+  var skyL = new THREE.PointLight(0x8ed2ff, 1.6, 20); skyL.position.set(4, 0.5, 3); scene.add(skyL);
+
+  var dark = new THREE.MeshStandardMaterial({ color: 0x1d1d27, metalness: 0.35, roughness: 0.32 });
+  var darker = new THREE.MeshStandardMaterial({ color: 0x24242f, metalness: 0.3, roughness: 0.3 });
+  var visorM = new THREE.MeshStandardMaterial({ color: 0x050507, metalness: 0.6, roughness: 0.12 });
+  var eyeM = new THREE.MeshBasicMaterial({ color: 0x8ed2ff });
+  var pinkM = new THREE.MeshStandardMaterial({ color: 0xff8db6, emissive: 0xff8db6, emissiveIntensity: 0.6, roughness: 0.4 });
+  var skyM = new THREE.MeshStandardMaterial({ color: 0x8ed2ff, emissive: 0x8ed2ff, emissiveIntensity: 0.35, roughness: 0.4 });
+  var blushM = new THREE.MeshBasicMaterial({ color: 0xff8db6, transparent: true, opacity: 0.45 });
+
+  var bot = new THREE.Group(); scene.add(bot);
+  var body = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 40), dark); body.scale.set(0.95, 1.05, 0.85); body.position.y = -1.0; bot.add(body);
+  var core = new THREE.Mesh(new THREE.CircleGeometry(0.17, 32), pinkM); core.position.set(0, -0.8, 0.86); bot.add(core);
+  var ring = new THREE.Mesh(new THREE.TorusGeometry(0.52, 0.06, 16, 48), skyM); ring.rotation.x = Math.PI / 2; ring.position.y = -0.05; bot.add(ring);
+
+  var head = new THREE.Group(); head.position.y = 0.72; bot.add(head);
+  var skull = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 48), darker); skull.scale.set(1.25, 0.95, 1.0); head.add(skull);
+  var visor = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 48), visorM); visor.scale.set(1.0, 0.6, 0.5); visor.position.set(0, 0.02, 0.56); head.add(visor);
+  var eyes = new THREE.Group(); eyes.position.set(0, 0.04, 1.02); head.add(eyes);
+  var eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.12, 24, 24), eyeM); eyeL.scale.set(1, 1.35, 0.4); eyeL.position.x = -0.3; eyes.add(eyeL);
+  var eyeR = eyeL.clone(); eyeR.position.x = 0.3; eyes.add(eyeR);
+  var bl = new THREE.Mesh(new THREE.CircleGeometry(0.09, 24), blushM); bl.position.set(-0.62, -0.28, 0.82); bl.rotation.y = -0.5; head.add(bl);
+  var br = bl.clone(); br.position.x = 0.62; br.rotation.y = 0.5; head.add(br);
+  var stem = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.45, 12), darker); stem.position.y = 1.1; head.add(stem);
+  var tip = new THREE.Mesh(new THREE.SphereGeometry(0.11, 24, 24), pinkM); tip.position.y = 1.37; head.add(tip);
+
+  function makeArm(side) {
+    var g = new THREE.Group(); g.position.set(0.98 * side, -0.55, 0);
+    var arm = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.72, 16), darker); arm.position.y = -0.36; g.add(arm);
+    var hand = new THREE.Mesh(new THREE.SphereGeometry(0.15, 20, 20), side > 0 ? skyM : dark); hand.position.y = -0.78; g.add(hand);
+    g.rotation.z = 0.28 * side; bot.add(g); return g;
+  }
+  var armL = makeArm(-1), armR = makeArm(1);
+
+  var sc = document.createElement("canvas"); sc.width = sc.height = 128;
+  var sx = sc.getContext("2d"); var grad = sx.createRadialGradient(64, 64, 4, 64, 64, 62);
+  grad.addColorStop(0, "rgba(0,0,0,0.55)"); grad.addColorStop(1, "rgba(0,0,0,0)"); sx.fillStyle = grad; sx.fillRect(0, 0, 128, 128);
+  var shadow = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 2.6), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = -2.25; scene.add(shadow);
+
+  function resize() {
+    var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h;
+    camera.position.z = w < 420 ? 10.2 : 8.6;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener("resize", resize);
+
+  var px = 0, py = 0;
+  window.addEventListener("pointermove", function (e) {
+    var r = canvas.getBoundingClientRect();
+    px = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2)));
+    py = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height * 0.4)) / (window.innerHeight / 2)));
+  }, { passive: true });
+
+  var ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), hover = false;
+  function hit(e) {
+    var r = canvas.getBoundingClientRect();
+    ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1; ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+    ray.setFromCamera(ndc, camera); return ray.intersectObject(bot, true).length > 0;
+  }
+  canvas.addEventListener("pointermove", function (e) { hover = hit(e); canvas.style.cursor = hover ? "pointer" : "default"; });
+  var jumpAt = -10, tipPink = true;
+  canvas.addEventListener("click", function (e) {
+    if (!hit(e)) return;
+    jumpAt = clock(); nextLine();
+    tipPink = !tipPink; tip.material = tipPink ? pinkM : skyM;
+    wake();
+  });
+
+  function clock() { return performance.now() / 1000; }
+  var t0 = clock(), nextBlink = t0 + 2.5;
+  function easeOutBounce(x) { var n1 = 7.5625, d1 = 2.75; if (x < 1 / d1) return n1 * x * x; if (x < 2 / d1) return n1 * (x -= 1.5 / d1) * x + 0.75; if (x < 2.5 / d1) return n1 * (x -= 2.25 / d1) * x + 0.9375; return n1 * (x -= 2.625 / d1) * x + 0.984375; }
+
+  var visible = true, running = false, rafId = 0;
+  function frame() {
+    var now = clock(), t = now - t0;
+    var baseY = 0;
+    if (!reduce && t < 1.1) baseY = 4 * (1 - easeOutBounce(t / 1.1));
+    var bob = reduce ? 0 : Math.sin(now * 1.6) * 0.08;
+    var j = now - jumpAt, jump = 0, spin = 0;
+    if (j >= 0 && j < 0.8) { jump = Math.sin(j / 0.8 * Math.PI) * 0.7; spin = reduce ? 0 : (j / 0.8) * Math.PI * 2; }
+    bot.position.y = baseY + bob + jump;
+    bot.rotation.y = spin + px * 0.25;
+    head.rotation.y += ((px * 0.55) - head.rotation.y) * 0.08;
+    head.rotation.x += ((py * 0.3) - head.rotation.x) * 0.08;
+    eyes.position.x = px * 0.06;
+    if (now > nextBlink) { var bk = now - nextBlink; var s = bk < 0.07 ? 1 - bk / 0.07 * 0.9 : (bk < 0.14 ? 0.1 + (bk - 0.07) / 0.07 * 0.9 : 1); eyeL.scale.y = eyeR.scale.y = 1.35 * s; if (bk > 0.14) nextBlink = now + 2.5 + Math.random() * 2.5; }
+    if (!reduce && t > 1.0 && t < 3.4) armR.rotation.z = 2.5 + Math.sin((t - 1.0) * 10) * 0.35;
+    else armR.rotation.z += (0.28 - armR.rotation.z) * 0.1;
+    armL.rotation.z = -0.28 + (reduce ? 0 : Math.sin(now * 1.6 + 1) * 0.04);
+    core.material.emissiveIntensity = 0.45 + (reduce ? 0 : Math.sin(now * 2.4) * 0.25);
+    var sh = 1 - Math.min(0.5, (bot.position.y) * 0.12); shadow.scale.set(sh, sh, sh);
+    renderer.render(scene, camera);
+    if (visible && !document.hidden) rafId = requestAnimationFrame(frame); else running = false;
+  }
+  function wake() { if (!running && visible && !document.hidden) { running = true; rafId = requestAnimationFrame(frame); } }
+  if (window.IntersectionObserver) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) wake(); }).observe(stage);
+  document.addEventListener("visibilitychange", wake);
+  wake();
+})();
+</script>
+
+</body>
+</html>
