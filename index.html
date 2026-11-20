@@ -480,6 +480,21 @@ var PROFILE = {
 
 var PROJECTS = [
   {
+    id: "mlops", cat: "devops", illus: "gitops", inProgress: true,
+    name: { fr: "Plateforme MLOps/GitOps pour l'ECG", en: "MLOps/GitOps platform for ECG" },
+    period: { fr: "Depuis nov. 2026", en: "Since Nov 2026" },
+    context: { fr: "Projet personnel", en: "Personal project" },
+    short: { fr: "Une plateforme MLOps de bout en bout autour de mon modèle CNN-BiLSTM : suivi des expériences, API, CI/CD sécurisée et déploiement GitOps.", en: "An end-to-end MLOps platform around my CNN-BiLSTM model: experiment tracking, API, secure CI/CD and GitOps deployment." },
+    problem: { fr: "Passer d'un modèle de notebook à un service fiable, traçable et déployé automatiquement, avec une évaluation honnête sur des patients jamais vus.", en: "Turn a notebook model into a reliable, traceable, automatically deployed service, with an honest evaluation on unseen patients." },
+    objectives: { fr: ["Tracer chaque entraînement et ne promouvoir un modèle que s'il est meilleur", "Servir le modèle via une API sécurisée", "Déployer en GitOps, avec un rollback par simple git revert", "À venir : Kubernetes (kind) avec Helm et ArgoCD, observabilité Prometheus/Grafana (SLO 99 %), autoscaling et tests de charge k6, canary avec Argo Rollouts, suivi du drift avec Evidently, Terraform sur Azure"], en: ["Track every training run and only promote a model if it is better", "Serve the model through a secure API", "Deploy with GitOps, with rollback as a simple git revert", "Coming next: Kubernetes (kind) with Helm and ArgoCD, Prometheus/Grafana observability (99% SLO), autoscaling and k6 load tests, canary with Argo Rollouts, drift monitoring with Evidently, Terraform on Azure"] },
+    features: { fr: ["Évaluation inter-patients (split de Chazal DS1/DS2) : un split aléatoire par battement donnerait environ 99 % d'accuracy à cause d'une fuite de données", "Suivi MLflow : paramètres, courbes, matrices de confusion, commit Git et modèle versionné ; l'alias @champion ne bouge que si la macro-F1 de test s'améliore", "API FastAPI avec métriques Prometheus, vérification SHA-256 du modèle, image Docker non-root", "CI/CD GitHub Actions : tests, lint Helm, build, scan Trivy, push sur GHCR, puis commit du nouveau tag d'image dans la config de déploiement (la CI n'a aucun accès direct au cluster)", "Durcissement : conteneurs non-root en lecture seule, capabilities supprimées, actions épinglées par SHA, permissions minimales", "Tags d'image immuables sha-<commit> pour une traçabilité complète", "Comparaison des versions dans MLflow : la v1 reste champion (accuracy 0,907, macro-F1 0,427) car la v2 n'améliore pas la macro-F1"], en: ["Inter-patient evaluation (de Chazal DS1/DS2 split): a random per-beat split would give about 99% accuracy through data leakage", "MLflow tracking: parameters, curves, confusion matrices, Git commit and versioned model; the @champion alias only moves if test macro-F1 improves", "FastAPI API with Prometheus metrics, SHA-256 model check, non-root Docker image", "GitHub Actions CI/CD: tests, Helm lint, build, Trivy scan, push to GHCR, then commit of the new image tag to the deployment config (CI has no direct cluster access)", "Hardening: read-only non-root containers, dropped capabilities, SHA-pinned actions, minimal permissions", "Immutable sha-<commit> image tags for full traceability", "Version comparison in MLflow: v1 stays champion (accuracy 0.907, macro-F1 0.427) because v2 does not improve macro-F1"] },
+    role: { fr: "Projet personnel : conception de l'architecture et réalisation, une phase à la fois (3 phases sur 10 terminées).", en: "Personal project: architecture design and implementation, one phase at a time (3 of 10 phases done)." },
+    difficulties: { fr: ["La classe S (supraventriculaire) n'est pas encore reconnue sur des patients inconnus : des caractéristiques RR améliorées sont prévues", "Choisir une métrique de promotion honnête (macro-F1) plutôt que l'accuracy, trompeuse sur des classes déséquilibrées"], en: ["The S (supraventricular) class is not yet recognized on unseen patients: improved RR features are planned", "Choosing an honest promotion metric (macro-F1) rather than accuracy, which is misleading on imbalanced classes"] },
+    tech: ["MLflow", "FastAPI", "Docker", "GitHub Actions", "Trivy", "PyTorch", "Python", "Prometheus", "Helm", "ArgoCD", "GHCR", "Pydantic"],
+    github: "https://github.com/eya-lakhal/mlops-gitops-ecg",
+    aliases: ["mlops", "gitops", "mlflow", "argocd", "plateforme mlops", "mlops-gitops-ecg", "github actions"]
+  },
+  {
     id: "declaris", cat: "devops", illus: "pipeline",
     name: { fr: "Chaîne CI/CD Declaris", en: "Declaris CI/CD pipeline" },
     period: { fr: "Juin – Août 2026", en: "June – August 2026" },
@@ -549,10 +564,10 @@ var PROJECTS = [
     metric: { value: "92,9 %", valueEn: "92.9%", label: "test accuracy" },
     problem: { fr: "Mesurer ce que le transfer learning apporte par rapport à un modèle entraîné de zéro.", en: "Measure what transfer learning brings compared with a model trained from scratch." },
     objectives: { fr: ["Comparer l'entraînement de zéro, la base gelée et le dégel partiel", "Optimiser les hyperparamètres"], en: ["Compare training from scratch, a frozen backbone and partial unfreezing", "Tune the hyperparameters"] },
-    features: { fr: ["CNN entraîné de zéro : 69,9 %", "ResNet50V2 pré-entraîné à base gelée : 88,0 %", "Fine-tuning par dégel partiel : 92,9 % d'accuracy sur le test", "Grid Search et Random Search avec SciKeras"], en: ["CNN trained from scratch: 69.9%", "Pre-trained ResNet50V2 with a frozen backbone: 88.0%", "Fine-tuning with partial unfreezing: 92.9% test accuracy", "Grid Search and Random Search with SciKeras"] },
+    features: { fr: ["CNN entraîné de zéro : 69,9 %", "ResNet50V2 pré-entraîné à base gelée : 88,0 %", "Fine-tuning par dégel partiel : 92,9 % d'accuracy sur le test", "Grid Search et Random Search avec SciKeras", "Analyse : matrice de confusion, F1 par classe, erreurs, filtres et feature maps", "Application Streamlit interactive : courbes, résultats et inférence sur une image"], en: ["CNN trained from scratch: 69.9%", "Pre-trained ResNet50V2 with a frozen backbone: 88.0%", "Fine-tuning with partial unfreezing: 92.9% test accuracy", "Grid Search and Random Search with SciKeras", "Analysis: confusion matrix, per-class F1, errors, filters and feature maps", "Interactive Streamlit app: curves, results and inference on an image"] },
     role: { fr: "Conception des expériences, entraînement et comparaison des modèles.", en: "Experiment design, training and model comparison." },
-    tech: ["Python", "TensorFlow/Keras", "SciKeras", "scikit-learn"],
-    github: null,
+    tech: ["Python", "TensorFlow/Keras", "SciKeras", "scikit-learn", "Streamlit"],
+    github: "https://github.com/eya-lakhal/resnet50v2-flowers-finetuning",
     aliases: ["resnet", "fine-tuning", "finetuning", "fine tuning", "transfer learning", "cnn", "image"]
   },
   {
@@ -619,8 +634,8 @@ var SKILLS = [
   { key: "web", color: "sky", icon: "web", name: { fr: "Développement web et mobile", en: "Web & mobile development" }, items: ["React", "Node.js", "Spring Boot", "FastAPI", "Flutter"] },
   { key: "fw", color: "pink", icon: "brain", name: { fr: "Frameworks IA et data", en: "AI & data frameworks" }, items: ["TensorFlow/Keras", "scikit-learn", "XGBoost", "Pandas", "NumPy", "LangChain", "Ragas", "Librosa"] },
   { key: "db", color: "sky", icon: "db", name: { fr: "Bases de données", en: "Databases" }, items: ["SQL", "Firebase Firestore", "FAISS", "Elasticsearch"] },
-  { key: "tools", color: "sky", icon: "tools", name: { fr: "Outils et plateformes", en: "Tools & platforms" }, items: ["Git", "GitLab", "Jenkins", "Docker", "Podman", "SonarQube", "Trivy", "Nexus", "ELK", "Linux (RHEL 9)", "VMware", "Google Colab", "Jupyter"] },
-  { key: "other", color: "pink", icon: "spark", name: { fr: "Autres compétences", en: "Other technical skills" }, items: ["CI/CD", "DevSecOps", "LLM & RAG", "Systèmes multi-agents / Multi-agent systems", "Traitement du signal / Signal processing", "Kubernetes (bases)", "Systèmes embarqués / IoT", "Scrum", "CRISP-DM"] }
+  { key: "tools", color: "sky", icon: "tools", name: { fr: "Outils et plateformes", en: "Tools & platforms" }, items: ["Git", "GitLab", "GitHub Actions", "Jenkins", "Docker", "MLflow", "Podman", "SonarQube", "Trivy", "Nexus", "ELK", "Linux (RHEL 9)", "VMware", "Google Colab", "Jupyter"] },
+  { key: "other", color: "pink", icon: "spark", name: { fr: "Autres compétences", en: "Other technical skills" }, items: ["CI/CD", "DevSecOps", "MLOps", "GitOps", "LLM & RAG", "Systèmes multi-agents / Multi-agent systems", "Traitement du signal / Signal processing", "Kubernetes (bases)", "Systèmes embarqués / IoT", "Scrum", "CRISP-DM"] }
 ];
 
 var TIMELINE = [
@@ -681,6 +696,15 @@ function illus(kind) {
       else v += '<path d="M265 78 h13 m-5 -5 l5 5 l-5 5" class="s-pink" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
       v += '<text x="' + xs[i] + '" y="122" text-anchor="middle" class="t-mono">' + labels[i] + '</text>';
     }
+  } else if (kind === "gitops") {
+    var gx = [52, 124, 196, 268], gl = ["mlflow", "ci", "git", "argocd"];
+    v += '<path d="M268 122 C268 152 52 152 52 122" class="s-faint" stroke-width="2" stroke-dasharray="4 5" fill="none"/>';
+    for (var gi = 0; gi < 4; gi++) {
+      if (gi < 3) v += '<path d="M' + (gx[gi] + 20) + ' 70 h' + 30 + ' m-6 -6 l6 6 l-6 6" class="s-faint" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+      v += '<rect x="' + (gx[gi] - 20) + '" y="50" width="40" height="40" rx="10" class="f-surf ' + (gi === 2 ? "s-pink" : "s-sky") + '" stroke-width="2"/>';
+      v += '<text x="' + gx[gi] + '" y="112" text-anchor="middle" class="t-mono">' + gl[gi] + '</text>';
+    }
+    v += '<circle cx="196" cy="70" r="6" class="f-pink"/>';
   } else if (kind === "ecg") {
     v += '<line x1="20" y1="90" x2="300" y2="90" class="s-line" stroke-width="1"/>';
     v += '<path d="M20 90 h30 q6 -10 12 0 h10 l4 8 l7 -62 l7 82 l5 -28 h14 q10 -18 20 0 h22 q6 -10 12 0 h10 l4 8 l7 -62 l7 82 l5 -28 h14 q10 -18 20 0 h40" class="s-pink" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
